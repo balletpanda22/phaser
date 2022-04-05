@@ -38,25 +38,18 @@
         {
             this.add.image(800, 375, 'wheel').setScale(0.3);
 
-            player = this.physics.add.image(800, 375, 'arrow').setScale(0.3);
-
-            this.anims.create({
-                key: 'spin',
-                angle: 0.2,
-                frameRate: 20,
-                repeat: -1
-            });
+            arrow = this.add.sprite(800, 375, 'arrow').setScale(0.3);
         }
 
         function update ()
         {
             if (cursors.space.isDown)
             {
-                player.anims.play('spin', true);
+                arrow.angle +=0.2;
             }
             else
             {
-                player.anims.play('spin', false);
+                arrow.angle +=0;
             }
         }
 
