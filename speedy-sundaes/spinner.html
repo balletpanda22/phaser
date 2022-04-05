@@ -22,7 +22,7 @@
             scene: {
                 preload: preload,
                 create: create,
-                update: update
+                update: update,
             }
         };
 
@@ -37,13 +37,29 @@
         function create ()
         {
             this.add.image(800, 375, 'wheel').setScale(0.3);
-            this.add.image(800, 375, 'arrow').setScale(0.3);
+
+            player = this.physics.add.image(800, 375, 'arrow').setScale(0.3);
+
+            this.anims.create({
+                key: 'spin',
+                angle: 0.2,
+                frameRate: 20,
+                repeat: -1
+            });
         }
 
         function update ()
         {
-
+            if (cursors.space.isDown)
+            {
+                player.anims.play('spin', true);
+            }
+            else
+            {
+                player.anims.play('spin', false);
+            }
         }
+
     </script>
     </body>
 </html>
