@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Spinner - 2</title>
+        <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+        <style type="text/css">
+            body {
+                margin: 0;
+            }
+        </style>
+    </head>
+    
+    <body>
+    
+    <script type="text/javascript">
+        
+        var gameOptions = {
+            slices: 6,
+            slicePrizes: ["1", "2", "3", "4", "5", "6"],
+            rotationTime: 3000
+        }
+
+        var config = {
+            type: Phaser.AUTO,
+            width: 1600,
+            height: 750,
+            scene: {
+                preload: preload,
+                create: create,
+                spinArrow: spinArrow,
+                update: update,
+            }
+        };
+
+        var game = new Phaser.Game(config);
+
+        function preload ()
+        {
+            this.load.image('wheel', 'assets/wheel.png');
+            this.load.image('arrow', 'assets/arrow.png');
+        }
+
+        function create ()
+        {
+            this.add.image(800, 375, 'wheel').setScale(0.3);
+
+            arrow = this.add.sprite(800, 375, 'arrow').setScale(0.3);
+        }
+
+        function spinArrow ()
+        {
+            if(this.canSpin)
+            {
+                var rounds = Phaser.Math.Between(2, 4);
+                var degrees = Phaser.Math.Between(0, 360);
+                var prize = gameOptions.slices - 1 - Math.floor(degrees / (360 / gameOptions.slices));
+                this.canSpin = false;
+                this.tweens.add(
+                    {
+                        targets: [this.arrow],
+                        angle: 360 * rounds + degrees,
+                        duration: gameOptions.rotationTime,
+                        callbackScope: this,
+                        onComplete: function(tween)
+                        {
+                            this.prizeText.setText(gameOptions.slicePrizes[prize]);
+                            this.canSpin = true;
+                        }
+                    }
+                );
+            }
+        }
+
+        function update ()
+        {
+           arrow.angle += 0.2;
+        }
+
+    </script>
+    </body>
+</html>
