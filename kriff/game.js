@@ -95,6 +95,7 @@ class playGame extends Phaser.Scene{
 
             // resetting text field
             this.prizeText.setText("");
+            this.clear.image("blanktransp");
 
             // the wheel will spin round from 2 to 4 times. This is just coreography
             var rounds = Phaser.Math.Between(2, 4);
