@@ -101,7 +101,7 @@ class playGame extends Phaser.Scene{
             var rounds = Phaser.Math.Between(2, 4);
 
             // then will rotate by a random number from 0 to 360 degrees. This is the actual spin
-            var degrees = Phaser.Math.Between(0, 360);
+            var degrees = 360 / Phaser.Math.Between(0, 6);
 
             // before the wheel ends spinning, we already know the prize according to "degrees" rotation and the number of slices
             var prize = gameOptions.slices - 1 - Math.floor(degrees / (360 / gameOptions.slices));
