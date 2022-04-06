@@ -23,10 +23,10 @@ window.onload = function() {
        type: Phaser.CANVAS,
 
        // game width, in pixels
-       width: 1600,
+       width: 2000,
 
        // game height, in pixels
-       height: 1600,
+       height: 2000,
 
        // game background color
        backgroundColor: 0x880044,
