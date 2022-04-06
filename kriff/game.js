@@ -58,6 +58,7 @@ class playGame extends Phaser.Scene{
         // loading assets
         this.load.image("wheel", "wheel.png");
         this.load.image("pin", "pin.png");
+        this.load.image("blacktransp", "blacktransp.png");
     }
 
     // method to be executed once the scene has been created
@@ -131,6 +132,7 @@ class playGame extends Phaser.Scene{
 
                     // displaying prize text
                     this.prizeText.setText(gameOptions.slicePrizes[prize]);
+                    this.add.image("blacktransp");
 
                     // player can spin again
                     this.canSpin = true;
