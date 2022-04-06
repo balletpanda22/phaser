@@ -72,7 +72,8 @@ class playGame extends Phaser.Scene{
 
         // adding the text field
         this.prizeText = this.add.text(game.config.width / 2, game.config.height / 2, "Spin the wheel", {
-            font: "100px Playlist",
+            font: "200px Playlist",
+            style: "bold",
             align: "center",
             color: "white"
         });
@@ -131,7 +132,6 @@ class playGame extends Phaser.Scene{
                 onComplete: function(tween){
 
                     // displaying prize text
-                    this.add.image(game.config.width / 2, game.config.height / 2, "blacktransp").setScale(6);
                     this.prizeText.setText(gameOptions.slicePrizes[prize]);
 
                     // player can spin again
