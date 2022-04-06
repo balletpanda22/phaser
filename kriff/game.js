@@ -132,7 +132,7 @@ class playGame extends Phaser.Scene{
 
                     // displaying prize text
                     this.prizeText.setText(gameOptions.slicePrizes[prize]);
-                    this.add.image("blacktransp");
+                    this.add.image(game.config.width / 2, game.config.height / 2, "blacktransp");
 
                     // player can spin again
                     this.canSpin = true;
