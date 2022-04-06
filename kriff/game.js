@@ -131,8 +131,8 @@ class playGame extends Phaser.Scene{
                 onComplete: function(tween){
 
                     // displaying prize text
+                    this.add.image(game.config.width / 2, game.config.height / 2, "blacktransp").setScale(6);
                     this.prizeText.setText(gameOptions.slicePrizes[prize]);
-                    this.add.image(game.config.width / 2, game.config.height / 2, "blacktransp");
 
                     // player can spin again
                     this.canSpin = true;
