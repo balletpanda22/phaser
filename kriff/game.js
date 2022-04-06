@@ -83,11 +83,11 @@ class playGame extends Phaser.Scene{
         this.canSpin = true;
 
         // waiting for your input, then calling "spinWheel" function
-        this.input.on("pointerdown", this.spinWheel, this);
+        this.input.on("pointerdown", this.spinPin, this);
     }
 
     // function to spin the wheel
-    spinWheel(){
+    spinPin(){
 
         // can we spin the wheel?
         if(this.canSpin){
