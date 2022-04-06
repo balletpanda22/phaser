@@ -70,7 +70,7 @@ class playGame extends Phaser.Scene{
         this.pin = this.add.sprite(game.config.width / 2, game.config.height / 2, "pin");
 
         // adding the text field
-        this.prizeText = this.add.text(game.config.width / 2, game.config.height - 90, "Spin the wheel", {
+        this.prizeText = this.add.text(game.config.width / 2, game.config.height / 2, "Spin the wheel", {
             font: "100px Playlist",
             align: "center",
             color: "white"
