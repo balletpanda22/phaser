@@ -74,10 +74,10 @@
                                                 { type : "Ingredient", color : "lightBlue", name : "Cream", points : 3, image : "assets/lightBlueCream.png" },
                                                 { type : "Ingredient", color : "lightBlue", name : "Sugar", points : 1, image : "assets/lightBlueSugar.png" },
                                                 { type : "Ingredient", color : "lightBlue", name : "Vanilla", points : 3, image : "assets/lightBlueVanilla.png" },
-                                                { type : "PowerUp", color : "lightBlue", name : "CandyCraving", points : 0, image : "assets/lightBlueCandyCraving.png" },
+                                                { type : "PowerUp", color : "lightBlue", name : "CandyCraving", points : 0, image : "assets/lightBlueCandyCraving.png", extraCards : 2 },
                                                 { type : "PowerUp", color : "lightBlue", name : "GroceryMixup", points : 0, image : "assets/lightBlueGroceryMixup.png" },
-                                                { type : "PowerUp", color : "lightBlue", name : "PickupEater", points : 0, image : "assets/lightBluePickyEater.png" },
-                                                { type : "PowerUp", color : "lightBlue", name : "SugarRush", points : 0, image : "assets/lightBlueSugarRush.png" },
+                                                { type : "PowerUp", color : "lightBlue", name : "PickyEater", points : 0, image : "assets/lightBluePickyEater.png", extraCards : 1 },
+                                                { type : "PowerUp", color : "lightBlue", name : "SugarRush", points : 0, image : "assets/lightBlueSugarRush.png", extraTurns : 1 },
 
                                                 { type : "Ingredient", color : "lightPink", name : "Butter", points : 3, image : "assets/lightPinkButter.png" },
                                                 { type : "Ingredient", color : "lightPink", name : "Cocoa", points : 4, image : "assets/lightPinkCocoa.png" },
@@ -164,15 +164,22 @@
 
             let currentPlayer = -1;
             let cardPicksLeft = 0;
+            let extraTurns = 0;
 
             showPlayer();
 
             // Pick a random card from the deck and remove
             function pickCard(o, deck) {
-//                if ( cardPicksLeft <= 0 ) {
-//                    alert("Next player needs to spin first");
-//                    return;
-//                } // if
+                if ( cardPicksLeft <= 0 ) {
+                    alert("Next player needs to spin first");
+                    return;
+                } // if
+
+                // No cards left in deck
+                if ( deck.length <= 0 ) {
+                    alert("No more cards left in " + o.id);
+                    return;
+                } // if
 
                 // Select card
                 i = Math.floor(Math.random() * deck.length);
@@ -183,6 +190,12 @@
 
                 // Add card to player hand
                 players[currentPlayer].ingredients.push(deck[i]);
+
+                // Special cards
+                if ( deck[i].extraCards )
+                    cardPicksLeft += deck[i].extraCards;
+                if ( deck[i].extraTurns )
+                    extraTurns += deck[i].extraTurns;
 
                 // Remove card from deck
                 deck.splice(i,1);
@@ -214,7 +227,10 @@
                 i = Math.floor(Math.random() * 6) + 1;
 
                 // Set next player
-                currentPlayer = (currentPlayer+1) % players.length;
+                if ( extraTurns > 0 )
+                    extraTurns--;
+                else
+                    currentPlayer = (currentPlayer+1) % players.length;
 
                 // Update spinner text
                 document.getElementById(o.id+'Text').innerHTML = players[currentPlayer].name + ' spun ' + i;
@@ -240,7 +256,6 @@
 
                 for (i=0; i<players.length; i++) {
                     o = document.getElementById('boardTableSpace' + players[i].position);
-                    console.log(players[i].name + ":" + players[i].position);
                     o.innerHTML += "<img class='boardTableAvatar' src='" + players[i].image + "'>";
                 } // for
 
