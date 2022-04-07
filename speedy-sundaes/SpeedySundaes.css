@@ -6,7 +6,7 @@ img[src=''] { display: none; }
 .boardTableSpace { width:125px; height:125px; text-align:center; }
 .boardTableAvatar { width:60px; height:60px; }
 .boardTableAvatar[src] { display:inline; }
-.cardSlot { text-align:center; width:180px; height:180px; border-radius: 40px; }
+.cardSlot { text-align:center; width:160px; height:180px; border-radius: 40px; }
 .card { text-align:center; width:180px; height:180px; }
 .lightPink { background-color:#FF7FC5; }
 .darkPink { background-color:#FF008C; }
