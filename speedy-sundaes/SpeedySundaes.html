@@ -1,0 +1,264 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="SpeedySundaes.css">
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>
+        <table>
+            <tr><td colspan="5"><span class="board">
+                <table id="boardTable">
+                    <tr>
+                        <td id='boardTableSpace0' class="boardTableSpace"></td>
+                        <td id='boardTableSpace1' class="boardTableSpace"></td>
+                        <td id='boardTableSpace2' class="boardTableSpace"></td>
+                        <td id='boardTableSpace3' class="boardTableSpace"></td>
+                        <td id='boardTableSpace4' class="boardTableSpace"></td>
+                        <td id='boardTableSpace5' class="boardTableSpace"></td>
+                        <td id='boardTableSpace6' class="boardTableSpace"></td>
+                        <td id='boardTableSpace7' class="boardTableSpace"></td>
+                    </tr>
+                    <tr>
+                        <td id='boardTableSpace17' class="boardTableSpace"></td>
+                        <td colspan=6 class="boardTableSpace"></td>
+                        <td id='boardTableSpace8' class="boardTableSpace"></td>
+                    </tr>
+                    <tr>
+                        <td id='boardTableSpace16' class="boardTableSpace"></td>
+                        <td id='boardTableSpace15' class="boardTableSpace"></td>
+                        <td id='boardTableSpace14' class="boardTableSpace"></td>
+                        <td id='boardTableSpace13' class="boardTableSpace"></td>
+                        <td id='boardTableSpace12' class="boardTableSpace"></td>
+                        <td id='boardTableSpace11' class="boardTableSpace"></td>
+                        <td id='boardTableSpace10' class="boardTableSpace"></td>
+                        <td id='boardTableSpace9' class="boardTableSpace"></td>
+                    </tr>
+                </table>
+            </span></td></tr>
+            <tr style="height:40px"></tr>
+            <tr><td id='lightPinkDeck' class="cardSlot lightPink" onclick="javascript:pickCard(this,lightPinkDeck);"><img id='lightPinkDeckCard' class='card'><span id='lightPinkDeckText'></span></td>
+                <td id='darkPinkDeck' class="cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'><span id='darkPinkDeckText'></span></td>
+                <td id='lightBlueDeck' class="cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'><span id='lightBlueDeckText'></span></td>
+                <td id='darkBlueDeck' class="cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'><span id='darkBlueDeckText'></span></td>
+                <td id='spinner' class="cardSlot" onclick="javascript:moveNextPlayer(this);"><img id='spinnerWheel' class='card' src='assets/spinner.png'><span id='spinnerText'></span></td>
+        </table>
+        </td>
+        <td>
+            <table>
+                <tr><td><img id='playerAvatar' class='card'></td></tr>
+                <tr><td id='playerIngredients'></td></tr>
+            </table>
+
+        </td>
+        </tr>
+        </table>
+        <script>
+            // Game configuration
+            const config = {
+                                players : [ 
+                                                { name : "Peach", image : "assets/avatarPeach.png" },
+                                                { name : "Lemon", image : "assets/avatarLemon.png" },
+                                                { name : "Cereal", image : "assets/avatarCereal.png" },
+                                                { name : "Cherry", image : "assets/avatarCherry.png" }
+                                        ],
+                                cards : [ 
+                                                { type : "Ingredient", color : "darkBlue", name : "Cream", points : 2, image : "assets/darkBlueCream.png" },
+                                                { type : "Ingredient", color : "darkBlue", name : "Sugar", points : 2, image : "assets/darkBlueSugar.png" },
+                                                { type : "Ingredient", color : "darkBlue", name : "Vanilla", points : 2, image : "assets/darkBlueVanilla.png" },
+
+                                                { type : "Ingredient", color : "darkPink", name : "Cocoa", points : 2, image : "assets/darkPinkCocoa.png" },
+                                                { type : "Ingredient", color : "darkPink", name : "Strawberry", points : 2, image : "assets/darkPinkStrawberry.png" },
+                                                { type : "Ingredient", color : "darkPink", name : "Sugar", points : 2, image : "assets/darkPinkSugar.png" },
+
+                                                { type : "Ingredient", color : "lightBlue", name : "Cream", points : 2, image : "assets/lightBlueCream.png" },
+                                                { type : "Ingredient", color : "lightBlue", name : "Sugar", points : 1, image : "assets/lightBlueSugar.png" },
+                                                { type : "Ingredient", color : "lightBlue", name : "Vanilla", points : 3, image : "assets/lightBlueVanilla.png" },
+                                                { type : "Ingredient", color : "lightBlue", name : "Flour", points : 3, image : "assets/lightBlueFlour.png" },
+                                                { type : "PowerUp", color : "lightBlue", name : "CandyCraving", points : 4, image : "assets/lightBlueCandyCraving.png" },
+                                                { type : "PowerUp", color : "lightBlue", name : "GroceryMixup", points : 4, image : "assets/lightBlueGroceryMixup.png" },
+                                                { type : "PowerUp", color : "lightBlue", name : "PickupEater", points : 4, image : "assets/lightBluePickyEater.png" },
+                                                { type : "PowerUp", color : "lightBlue", name : "SugarRush", points : 4, image : "assets/lightBlueSugarRush.png" },
+
+                                                { type : "Ingredient", color : "lightPink", name : "Butter", points : 2, image : "assets/lightPinkButter.png" },
+                                                { type : "Ingredient", color : "lightPink", name : "Cocoa", points : 2, image : "assets/lightPinkCocoa.png" },
+                                                { type : "Ingredient", color : "lightPink", name : "Egg", points : 2, image : "assets/lightPinkEgg.png" },
+                                                { type : "Ingredient", color : "lightPink", name : "Strawberry", points : 2, image : "assets/lightPinkStrawberry.png" },
+                                                { type : "Ingredient", color : "lightPink", name : "Sugar", points : 2, image : "assets/lightPinkSugar.png" },
+
+                                                { type : "Food", name : "IceCream", points : 10, image : "assets/purpleIceCream.png" },
+                                                { type : "Food", name : "WhippedCream", points : 6, image : "assets/purpleWhippedCream.png" },
+                                                { type : "Food", name : "StrawberrySauce", points : 6, image : "assets/strawberrySauce.png" },
+                                                { type : "Food", name : "ChocolateSauceAndSprinkles", points : 6, image : "assets/purpleChocolateSauce.png" },
+                                                { type : "Food", name : "CaramelSauceAndCone", points : 6, image : "assets/purpleCaramelSauce.png" }
+                                        ],
+                                lightPinkDeck : [ 
+                                                { count : 40, name : "Sugar" },
+                                                { count : 10, name : "Strawberry" },
+                                                { count : 10, name : "Egg" },
+                                                { count : 10, name : "Cocoa" },
+                                                { count : 2, name : "Butter" }
+                                        ],
+                                darkPinkDeck : [ 
+                                                { count : 20, name : "Sugar" },
+                                                { count : 20, name : "Strawberry" },
+                                                { count : 20, name : "Cocoa" }
+                                        ],
+                                lightBlueDeck : [ 
+                                                { count : 40, name : "Sugar" },
+                                                { count : 10, name : "Cream" },
+                                                { count : 10, name : "Vanilla" },
+                                                { count : 10, name : "Flour" },
+                                                { count : 2, name : "CandyCraving" },
+                                                { count : 5, name : "GroceryMixup" },
+                                                { count : 5, name : "PickupEater" },
+                                                { count : 2, name : "SugarRush" },
+                                        ],
+                                darkBlueDeck : [ 
+                                                { count : 20, name : "Sugar" },
+                                                { count : 20, name : "Cream" },
+                                                { count : 20, name : "Vanilla" }
+                                        ]
+                            }   
+            console.log(config);
+
+            // Add cards to Light Pink deck
+            let lightPinkDeck = [];
+            for ( i=0; i<config.lightPinkDeck.length; i++ ) {
+                for ( j=0; j<config.lightPinkDeck[i].count; j++ ) {
+                    lightPinkDeck.push(config.cards.find(cards => cards.color === 'lightPink' && cards.name === config.lightPinkDeck[i].name));
+                } // for
+            } // for
+
+            // Add cards to Dark Pink deck
+            let darkPinkDeck = [];
+            for ( i=0; i<config.darkPinkDeck.length; i++ ) {
+                for ( j=0; j<config.darkPinkDeck[i].count; j++ ) {
+                    darkPinkDeck.push(config.cards.find(cards => cards.color === 'darkPink' && cards.name === config.darkPinkDeck[i].name));
+                } // for
+            } // for
+
+            // Add cards to Light Blue deck
+            let lightBlueDeck = [];
+            for ( i=0; i<config.lightBlueDeck.length; i++ ) {
+                for ( j=0; j<config.lightBlueDeck[i].count; j++ ) {
+                    lightBlueDeck.push(config.cards.find(cards => cards.color === 'lightBlue' && cards.name === config.lightBlueDeck[i].name));
+                } // for
+            } // for
+
+            // Add cards to Dark Blue deck
+            let darkBlueDeck = [];
+            for ( i=0; i<config.darkBlueDeck.length; i++ ) {
+                for ( j=0; j<config.darkBlueDeck[i].count; j++ ) {
+                    darkBlueDeck.push(config.cards.find(cards => cards.color === 'darkBlue' && cards.name === config.darkBlueDeck[i].name));
+                } // for
+            } // for
+
+            // Add avatars to board
+            let players = [];
+            for ( i=0; i<config.players.length; i++ ) {
+                p = config.players[i];
+                p.position = 0;
+                p.ingredients = [];
+                players.push(p);
+            } // for
+
+            let currentPlayer = -1;
+            let cardPicksLeft = 0;
+
+            showPlayer();
+
+            // Pick a random card from the deck and remove
+            function pickCard(o, deck) {
+                if ( cardPicksLeft <= 0 ) {
+                    alert("Next player needs to spin first");
+                    return;
+                } // if
+
+                // Select card
+                i = Math.floor(Math.random() * deck.length);
+
+                // Update shown card
+                document.getElementById(o.id+'Text').innerHTML = deck[i].name;
+                document.getElementById(o.id+'Card').src = deck[i].image;
+
+                // Add card to player hand
+                players[currentPlayer].ingredients.push(deck[i]);
+
+                // Remove card from deck
+                deck.splice(i,1);
+
+                // Reduce available card picks for this round
+                cardPicksLeft--;
+
+                // Show player info
+                showPlayer();
+            } // pickCard
+
+            function moveNextPlayer(o) {
+                if ( cardPicksLeft > 0 ) {
+                    alert(players[currentPlayer].name + " still needs to pick up a card");
+                    return;
+                } // if
+
+                // Dice roll
+                i = Math.floor(Math.random() * 6) + 1;
+
+                // Set next player
+                currentPlayer = (currentPlayer+1) % players.length;
+
+                // Update spinner text
+                document.getElementById(o.id+'Text').innerHTML = players[currentPlayer].name + ' spun ' + i;
+
+                // Update player position
+                players[currentPlayer].position = (players[currentPlayer].position + i ) % 18;
+
+                console.log("Moving " + players[currentPlayer].name + " " + i + " spots to " + players[currentPlayer].position);
+
+                // Allow player to pick cards
+                cardPicksLeft = 1;
+
+                // Show player info
+                showPlayer();
+            } // moveNextPlayer
+
+            function showPlayer() {
+                // Update players on board
+                objs = document.getElementsByClassName('boardTableSpace');
+                for ( i=0; i<objs.length; i++ ) {
+                    objs[i].innerHTML = "";
+                } // for
+
+                for (i=0; i<players.length; i++) {
+                    o = document.getElementById('boardTableSpace' + players[i].position);
+                    console.log(players[i].name + ":" + players[i].position);
+                    o.innerHTML += "<img class='boardTableAvatar' src='" + players[i].image + "'>";
+                } // for
+
+                // No active player yet
+                if ( currentPlayer < 0 )
+                    return;
+
+                // Update current player image
+                document.getElementById('playerAvatar').src = players[currentPlayer].image;
+
+                let t = players[currentPlayer].name + ' has: ';
+                let points = 0;
+
+                // List ingredients for current player
+                if (players[currentPlayer].ingredients.length > 0 ) {
+                    t = t + "<ul>";
+                    for (i=0; i<players[currentPlayer].ingredients.length; i++) {
+                        t = t + "<li>" + players[currentPlayer].ingredients[i].name + "</li>";
+                        points += players[currentPlayer].ingredients[i].points;
+                    } // for
+                    t = t + "</ul>";
+                    t = t + "and " + points + " point(s)";
+                } else {
+                    t = t + "no cards yets";
+                } // if
+                document.getElementById('playerIngredients').innerHTML = t;
+            } // showPlayer
+        </script>
+    </body>
+</html>
