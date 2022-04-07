@@ -37,14 +37,14 @@
                 </table>
             </span></td></tr>
             <tr style="height:40px"></tr>
-            <tr><td id='lightPinkDeck' class="cardSlot lightPink" onclick="javascript:pickCard(this,lightPinkDeck);"><img id='lightPinkDeckCard' class='card'><span id='lightPinkDeckText'></span></td>
-                <td id='darkPinkDeck' class="cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'><span id='darkPinkDeckText'></span></td>
-                <td id='lightBlueDeck' class="cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'><span id='lightBlueDeckText'></span></td>
-                <td id='darkBlueDeck' class="cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'><span id='darkBlueDeckText'></span></td>
-                <td id='spinner' class="cardSlot" onclick="javascript:moveNextPlayer(this);"><img id='spinnerWheel' class='card' src='assets/spinner.png'><span id='spinnerText'></span></td>
+            <tr><td id='lightPinkDeck' class="cardSlotLightPink cardSlot lightPink" onclick="javascript:pickCard(this,lightPinkDeck);"><img id='lightPinkDeckCard' class='card'><br><span id='lightPinkDeckText'>&nbsp;</span></td>
+                <td id='darkPinkDeck' class="cardSlotDarkPink cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'><br><span id='darkPinkDeckText'>&nbsp;</span></td>
+                <td id='lightBlueDeck' class="cardSlotLightBlue cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'><br><span id='lightBlueDeckText'>&nbsp;</span></td>
+                <td id='darkBlueDeck' class="cardSlotDarkBlue cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'><br><span id='darkBlueDeckText'>&nbsp;</span></td>
+                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><img id='spinnerWheel' class='spinner' src='assets/spinner.png'><br><span id='spinnerText'>&nbsp;</span></td>
         </table>
         </td>
-        <td>
+        <td style="vertical-align:top">
             <table>
                 <tr><td><img id='playerAvatar' class='card'></td></tr>
                 <tr><td id='playerIngredients'></td></tr>
@@ -182,7 +182,7 @@
             let cardPicksLeft = 0;
             let extraTurns = 0;
 
-            showPlayer();
+            showPlayer(0);
 
             // Pick a random card from the deck and remove
             function pickCard(o, deck) {
@@ -240,14 +240,11 @@
                     return;
                 } // if
 
+                // Reset flipped cards
                 objs = document.getElementsByClassName('cardSlot');
                 for ( i=0; i<objs.length; i++ ) {
-                    obj = document.getElementById(objs[i].id+'Card');
-                    if ( obj )
-                        obj.src = '';
-                    obj = document.getElementById(objs[i].id+'Text');
-                    if ( obj )
-                        obj.innerHTML = '';
+                    document.getElementById(objs[i].id+'Card').src = '';
+                    document.getElementById(objs[i].id+'Text').innerHTML = '';
                 } // for
 
                 // Dice roll
@@ -274,7 +271,7 @@
                 showPlayer();
             } // moveNextPlayer
 
-            function showPlayer() {
+            function showPlayer(playerId =currentPlayer) {
                 // Update players on board
                 objs = document.getElementsByClassName('boardTableSpace');
                 for ( i=0; i<objs.length; i++ ) {
@@ -287,23 +284,23 @@
                 } // for
 
                 // No active player yet
-                if ( currentPlayer < 0 )
+                if ( playerId < 0 )
                     return;
 
                 // Update current player image
-                document.getElementById('playerAvatar').src = players[currentPlayer].image;
+                document.getElementById('playerAvatar').src = players[playerId].image;
 
-                let t = players[currentPlayer].name + ' has: ';
+                let t = players[playerId].name + ' has: ';
                 let points = 0;
 
                 // List ingredients for current player
-                if (players[currentPlayer].ingredients.length > 0 ) {
+                if (players[playerId].ingredients.length > 0 ) {
                     t = t + "<ul>";
-                    for (i=0; i<players[currentPlayer].ingredients.length; i++) {
-                        t = t + "<li>" + players[currentPlayer].ingredients[i].name 
-                                + (players[currentPlayer].ingredients[i].count>1?(" (x " + players[currentPlayer].ingredients[i].count + ")"):"") 
+                    for (i=0; i<players[playerId].ingredients.length; i++) {
+                        t = t + "<li>" + players[playerId].ingredients[i].name 
+                                + (players[playerId].ingredients[i].count>1?(" (x " + players[playerId].ingredients[i].count + ")"):"") 
                                 + "</li>";
-                        points += players[currentPlayer].ingredients[i].count * players[currentPlayer].ingredients[i].points;
+                        points += players[playerId].ingredients[i].count * players[playerId].ingredients[i].points;
                     } // for
                     t = t + "</ul>";
                     t = t + "and " + points + " point(s)";
