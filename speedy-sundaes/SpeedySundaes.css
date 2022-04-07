@@ -8,7 +8,7 @@ img[src=''] { display: none; }
 .boardTableAvatar[src] { display:inline; }
 .cardSlot { text-align:center; width:180px; height:180px; border-radius: 40px; }
 .card { text-align:center; width:180px; height:180px; }
-.lightPink { background-color:#ff7fc581; }
-.darkPink { background-color:#ff008c83; }
-.lightBlue { background-color:#7fdfff77; }
-.darkBlue { background-color:#00bfff7d; }
+.lightPink { background-color:#FF7FC5; }
+.darkPink { background-color:#FF008C; }
+.lightBlue { background-color:#7FDFFF; }
+.darkBlue { background-color:#00BFFF; }
