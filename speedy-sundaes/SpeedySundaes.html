@@ -10,29 +10,29 @@
             <tr><td colspan="5"><span class="board">
                 <table id="boardTable">
                     <tr>
-                        <td id='boardTableSpace0' class="boardTableSpace"></td>
-                        <td id='boardTableSpace1' class="boardTableSpace"></td>
-                        <td id='boardTableSpace2' class="boardTableSpace"></td>
-                        <td id='boardTableSpace3' class="boardTableSpace"></td>
-                        <td id='boardTableSpace4' class="boardTableSpace"></td>
-                        <td id='boardTableSpace5' class="boardTableSpace"></td>
-                        <td id='boardTableSpace6' class="boardTableSpace"></td>
-                        <td id='boardTableSpace7' class="boardTableSpace"></td>
+                        <td id='boardTableSpace0' class="boardTableSpace" boardColor="lightBlue"></td>
+                        <td id='boardTableSpace1' class="boardTableSpace" boardColor="darkBlue"></td>
+                        <td id='boardTableSpace2' class="boardTableSpace" boardColor="lightBlue"></td>
+                        <td id='boardTableSpace3' class="boardTableSpace" boardColor="darkBlue"></td>
+                        <td id='boardTableSpace4' class="boardTableSpace" boardColor="darkPink"></td>
+                        <td id='boardTableSpace5' class="boardTableSpace" boardColor="lightPink"></td>
+                        <td id='boardTableSpace6' class="boardTableSpace" boardColor="darkPink"></td>
+                        <td id='boardTableSpace7' class="boardTableSpace" boardColor="lightPink"></td>
                     </tr>
                     <tr>
-                        <td id='boardTableSpace17' class="boardTableSpace"></td>
+                        <td id='boardTableSpace17' class="boardTableSpace" boardColor="darkBlue"></td>
                         <td colspan=6 class="boardTableSpace"></td>
-                        <td id='boardTableSpace8' class="boardTableSpace"></td>
+                        <td id='boardTableSpace8' class="boardTableSpace" boardColor="darkPink"></td>
                     </tr>
                     <tr>
-                        <td id='boardTableSpace16' class="boardTableSpace"></td>
-                        <td id='boardTableSpace15' class="boardTableSpace"></td>
-                        <td id='boardTableSpace14' class="boardTableSpace"></td>
-                        <td id='boardTableSpace13' class="boardTableSpace"></td>
-                        <td id='boardTableSpace12' class="boardTableSpace"></td>
-                        <td id='boardTableSpace11' class="boardTableSpace"></td>
-                        <td id='boardTableSpace10' class="boardTableSpace"></td>
-                        <td id='boardTableSpace9' class="boardTableSpace"></td>
+                        <td id='boardTableSpace16' class="boardTableSpace" boardColor="lightBlue"></td>
+                        <td id='boardTableSpace15' class="boardTableSpace" boardColor="darkBlue"></td>
+                        <td id='boardTableSpace14' class="boardTableSpace" boardColor="lightBlue"></td>
+                        <td id='boardTableSpace13' class="boardTableSpace" boardColor="darkBlue"></td>
+                        <td id='boardTableSpace12' class="boardTableSpace" boardColor="darkPink"></td>
+                        <td id='boardTableSpace11' class="boardTableSpace" boardColor="lightPink"></td>
+                        <td id='boardTableSpace10' class="boardTableSpace" boardColor="darkPink"></td>
+                        <td id='boardTableSpace9' class="boardTableSpace" boardColor="lightPink"></td>
                     </tr>
                 </table>
             </span></td></tr>
@@ -85,12 +85,20 @@
                                                 { type : "Ingredient", color : "lightPink", name : "Strawberry", points : 4, image : "assets/lightPinkStrawberry.png" },
                                                 { type : "Ingredient", color : "lightPink", name : "Sugar", points : 1, image : "assets/lightPinkSugar.png" },
 
-                                                { type : "Food", name : "IceCream", points : 20, image : "assets/purpleIceCream.png" },
-                                                { type : "Food", name : "WhippedCream", points : 10, image : "assets/purpleWhippedCream.png" },
-                                                { type : "Food", name : "StrawberrySauce", points : 15, image : "assets/strawberrySauce.png" },
-                                                { type : "Food", name : "ChocolateSauce", points : 20, image : "assets/purpleChocolateSauce.png" },
-                                                { type : "Food", name : "CaramelSauce", points : 15, image : "assets/purpleCaramelSauce.png" },
-                                                { type : "Food", name : "Sprinkles", points: 10, image : "assets/purpleSprinkles.png"}
+                                                { type : "Food", name : "IceCream", points : 20, image : "assets/purpleIceCream.png",
+                                                    ingredients : [ "Sugar", "Sugar", "Cream", "Cream", "Vanilla", "Egg" ] },
+                                                { type : "Food", name : "WhippedCream", points : 10, image : "assets/purpleWhippedCream.png",
+                                                    ingredients : [ "Sugar", "Cream", "Cream" ] },
+                                                { type : "Food", name : "StrawberrySauce", points : 15, image : "assets/strawberrySauce.png",
+                                                    ingredients : [ "Strawberry", "Strawberry", "Sugar", "Sugar" ] },
+                                                { type : "Food", name : "ChocolateSauce", points : 20, image : "assets/purpleChocolateSauce.png",
+                                                    ingredients : [ "Sugar", "Sugar", "Sugar", "Cream", "Cocoa", "Cocoa" ] },
+                                                { type : "Food", name : "CaramelSauce", points : 15, image : "assets/purpleCaramelSauce.png",
+                                                    ingredients : [ "Sugar", "Sugar", "Sugar", "Sugar", "Cream", "Vanilla", "Butter" ] },
+                                                { type : "Food", name : "Cones", points: 10, image : "assets/purpleCones.png",
+                                                    ingredients : [ "Sugar", "Egg", "Egg", "Butter", "Flour", "Flour" ]},
+                                                { type : "Food", name : "Sprinkles", points: 10, image : "assets/purpleSprinkles.png",
+                                                    ingredients : [ "Sugar", "Sugar", "Sugar", "Vanilla", "Egg" ]}
                                         ],
                                 lightPinkDeck : [ 
                                                 { count : 40, name : "Sugar" },
@@ -178,6 +186,13 @@
                 // No cards left in deck
                 if ( deck.length <= 0 ) {
                     alert("No more cards left in " + o.id);
+                    return;
+                } // if
+
+                // Card color must match board position
+                boardColor = document.getElementById('boardTableSpace'+players[currentPlayer].position).getAttribute('boardColor');
+                if ( boardColor !== deck[0].color ) {
+                    alert(players[currentPlayer].name + " must pick a card from " + boardColor);
                     return;
                 } // if
 
