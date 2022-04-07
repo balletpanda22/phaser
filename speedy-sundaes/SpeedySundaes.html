@@ -37,11 +37,11 @@
                 </table>
             </span></td></tr>
             <tr style="height:40px"></tr>
-            <tr><td id='lightPinkDeck' class="cardSlot lightPink" onclick="javascript:pickCard(this,lightPinkDeck);"><img id='lightPinkDeckCard' class='card'><span id='lightPinkDeckText'></span></td>
-                <td id='darkPinkDeck' class="cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'><span id='darkPinkDeckText'></span></td>
-                <td id='lightBlueDeck' class="cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'><span id='lightBlueDeckText'></span></td>
-                <td id='darkBlueDeck' class="cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'><span id='darkBlueDeckText'></span></td>
-                <td id='spinner' class="cardSlot" onclick="javascript:moveNextPlayer(this);"><img id='spinnerWheel' class='card' src='assets/spinner.png'><span id='spinnerText'></span></td>
+            <tr><td id='lightPinkDeck' class="cardSlot lightPink" onclick="javascript:pickCard(this,lightPinkDeck);"><img id='lightPinkDeckCard' class='card'><br><span id='lightPinkDeckText'>&nbsp;</span></td>
+                <td id='darkPinkDeck' class="cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'><br><span id='darkPinkDeckText'>&nbsp;</span></td>
+                <td id='lightBlueDeck' class="cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'><br><span id='lightBlueDeckText'>&nbsp;</span></td>
+                <td id='darkBlueDeck' class="cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'><br><span id='darkBlueDeckText'>&nbsp;</span></td>
+                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><img id='spinnerWheel' class='card' src='assets/spinner.png'><br><span id='spinnerText'>&nbsp;</span></td>
         </table>
         </td>
         <td>
@@ -240,14 +240,11 @@
                     return;
                 } // if
 
+                // Reset flipped cards
                 objs = document.getElementsByClassName('cardSlot');
                 for ( i=0; i<objs.length; i++ ) {
-                    obj = document.getElementById(objs[i].id+'Card');
-                    if ( obj )
-                        obj.src = '';
-                    obj = document.getElementById(objs[i].id+'Text');
-                    if ( obj )
-                        obj.innerHTML = '';
+                    document.getElementById(objs[i].id+'Card').src = '';
+                    document.getElementById(objs[i].id+'Text').innerHTML = '';
                 } // for
 
                 // Dice roll
