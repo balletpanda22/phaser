@@ -1,11 +1,12 @@
 img { display: none; }
 img[src] { display: block; }
+img[src=''] { display: none; }
 .board { background-image:url("SpeedySundaes.png"); background-size:cover; display:block; width:1000px; height:375px; }
 .boardTableSpace { width:125px; height:125px; text-align:center; }
 .boardTableAvatar { width:50px; height:50px; }
 .boardTableAvatar[src] { display:inline; }
 .cardSlot { text-align:center; width:180px; height:180px; }
-.card { text-align:center; width:160px; height:160px; }
+.card { text-align:center; width:180px; height:180px; }
 .lightPink { background-color:#FF7FC5; }
 .darkPink { background-color:#FF008C; }
 .lightBlue { background-color:#7FDFFF; }

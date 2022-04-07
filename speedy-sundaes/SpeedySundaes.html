@@ -201,6 +201,16 @@
                     return;
                 } // if
 
+                objs = document.getElementsByClassName('cardSlot');
+                for ( i=0; i<objs.length; i++ ) {
+                    obj = document.getElementById(objs[i].id+'Card');
+                    if ( obj )
+                        obj.src = '';
+                    obj = document.getElementById(objs[i].id+'Text');
+                    if ( obj )
+                        obj.innerHTML = '';
+                } // for
+
                 // Dice roll
                 i = Math.floor(Math.random() * 6) + 1;
 
