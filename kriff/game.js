@@ -7,7 +7,7 @@ var gameOptions = {
     slices: 6,
 
     // prize names, starting from 12 o'clock going clockwise
-    slicePrizes: ["4", "5", "6", "1", "2", "3"],
+    slicePrizes: ["4", "5", "6", "1", "2", "3" ],
 
     // wheel rotation duration, in milliseconds
     rotationTime: 3000
@@ -23,10 +23,10 @@ window.onload = function() {
        type: Phaser.CANVAS,
 
        // game width, in pixels
-       width: 2000,
+       width: 1800,
 
        // game height, in pixels
-       height: 2000,
+       height: 1800,
 
        // game background color
        backgroundColor: 0x880044,
