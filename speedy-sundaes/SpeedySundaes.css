@@ -2,6 +2,7 @@ body { background: antiquewhite; }
 img { display: none; }
 img[src] { display: inline; }
 img[src=''] { display: none; }
+.center { display: block; margin-left: auto; margin-right: auto; width: 50%; }
 .lightPink { background-color:#FF7FC5; }
 .darkPink { background-color:#FF008C; }
 .lightBlue { background-color:#7FDFFF; }
@@ -10,8 +11,15 @@ img[src=''] { display: none; }
 .boardTableSpace { width:125px; height:125px; text-align:center; }
 .boardTableAvatar { width:60px; height:60px; }
 .boardTableAvatar[src] { display:inline; }
-.cardSlot { text-align:center; width:180px; height:240px; border-radius: 40px; 
-            background-image:url("assets/fullAvatarPeach.png"); background-size:75%; 
-            background-repeat:no-repeat; background-position:center; }
-.spinnerSlot { text-align:center; height:240px; border-radius: 40px; }
+.cardSlot { text-align:center; width:180px; height:270px; border-radius: 40px; }
+.cardSlotLightPink { background-image:url("assets/lightpinkDeckCover.png"); background-size:cover; 
+                        background-repeat:no-repeat; background-position:center; }
+.cardSlotDarkPink { background-image:url("assets/darkpinkDeckCover.png"); background-size:cover; 
+                        background-repeat:no-repeat; background-position:center; }
+.cardSlotLightBlue { background-image:url("assets/lightblueDeckCover.png"); background-size:cover; 
+                        background-repeat:no-repeat; background-position:center; }
+.cardSlotDarkBlue { background-image:url("assets/darkblueDeckCover.png"); background-size:cover; 
+                        background-repeat:no-repeat; background-position:center; }
+.spinnerSlot { text-align:center; height:270px; border-radius: 40px; }
 .card { text-align:center; width:180px; height:180px; }
+.spinner { text-align:center; width:250px; height:250px; }
