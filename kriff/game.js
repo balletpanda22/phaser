@@ -72,8 +72,8 @@ class playGame extends Phaser.Scene{
 
         // adding the text field
         this.prizeText = this.add.text(game.config.width / 2, game.config.height / 2, "Spin the wheel", {
-            font: "200px Trebuchet MS",
-            style: "bold",
+            // font: "200px Trebuchet MS",
+            // style: "bold",
             align: "center",
             color: "white"
         });
