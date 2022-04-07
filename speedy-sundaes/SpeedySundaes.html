@@ -118,7 +118,7 @@
                                                 { count : 10, name : "Vanilla" },
                                                 { count : 4, name : "CandyCraving" },
                                                 { count : 6, name : "GroceryMixup" },
-                                                { count : 6, name : "PickupEater" },
+                                                { count : 6, name : "PickyEater" },
                                                 { count : 4, name : "SugarRush" },
                                         ],
                                 darkBlueDeck : [ 
@@ -133,7 +133,9 @@
             let lightPinkDeck = [];
             for ( i=0; i<config.lightPinkDeck.length; i++ ) {
                 for ( j=0; j<config.lightPinkDeck[i].count; j++ ) {
-                    lightPinkDeck.push(config.cards.find(cards => cards.color === 'lightPink' && cards.name === config.lightPinkDeck[i].name));
+                    card = config.cards.find(cards => cards.color === 'lightPink' && cards.name === config.lightPinkDeck[i].name);
+                    card.count = 1;
+                    lightPinkDeck.push(card);
                 } // for
             } // for
 
@@ -141,7 +143,9 @@
             let darkPinkDeck = [];
             for ( i=0; i<config.darkPinkDeck.length; i++ ) {
                 for ( j=0; j<config.darkPinkDeck[i].count; j++ ) {
-                    darkPinkDeck.push(config.cards.find(cards => cards.color === 'darkPink' && cards.name === config.darkPinkDeck[i].name));
+                    card = config.cards.find(cards => cards.color === 'darkPink' && cards.name === config.darkPinkDeck[i].name);
+                    card.count = 1;
+                    darkPinkDeck.push(card);
                 } // for
             } // for
 
@@ -149,7 +153,9 @@
             let lightBlueDeck = [];
             for ( i=0; i<config.lightBlueDeck.length; i++ ) {
                 for ( j=0; j<config.lightBlueDeck[i].count; j++ ) {
-                    lightBlueDeck.push(config.cards.find(cards => cards.color === 'lightBlue' && cards.name === config.lightBlueDeck[i].name));
+                    card = config.cards.find(cards => cards.color === 'lightBlue' && cards.name === config.lightBlueDeck[i].name);
+                    card.count = 1;
+                    lightBlueDeck.push(card);
                 } // for
             } // for
 
@@ -157,7 +163,9 @@
             let darkBlueDeck = [];
             for ( i=0; i<config.darkBlueDeck.length; i++ ) {
                 for ( j=0; j<config.darkBlueDeck[i].count; j++ ) {
-                    darkBlueDeck.push(config.cards.find(cards => cards.color === 'darkBlue' && cards.name === config.darkBlueDeck[i].name));
+                    card = config.cards.find(cards => cards.color === 'darkBlue' && cards.name === config.darkBlueDeck[i].name);
+                    card.count = 1;
+                    darkBlueDeck.push(card);
                 } // for
             } // for
 
@@ -204,7 +212,11 @@
                 document.getElementById(o.id+'Card').src = deck[i].image;
 
                 // Add card to player hand
-                players[currentPlayer].ingredients.push(deck[i]);
+                card = players[currentPlayer].ingredients.find(ingredients => ingredients.name === deck[i].name);
+                if ( card )
+                    card.count++;
+                else
+                    players[currentPlayer].ingredients.push(deck[i]);
 
                 // Special cards
                 if ( deck[i].extraCards )
@@ -288,8 +300,10 @@
                 if (players[currentPlayer].ingredients.length > 0 ) {
                     t = t + "<ul>";
                     for (i=0; i<players[currentPlayer].ingredients.length; i++) {
-                        t = t + "<li>" + players[currentPlayer].ingredients[i].name + "</li>";
-                        points += players[currentPlayer].ingredients[i].points;
+                        t = t + "<li>" + players[currentPlayer].ingredients[i].name 
+                                + (players[currentPlayer].ingredients[i].count>1?(" (x " + players[currentPlayer].ingredients[i].count + ")"):"") 
+                                + "</li>";
+                        points += players[currentPlayer].ingredients[i].count * players[currentPlayer].ingredients[i].points;
                     } // for
                     t = t + "</ul>";
                     t = t + "and " + points + " point(s)";
