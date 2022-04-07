@@ -12,3 +12,9 @@ img[src=''] { display: none; }
 .darkPink { background-color:#FF008C; }
 .lightBlue { background-color:#7FDFFF; }
 .darkBlue { background-color:#00BFFF; }
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
