@@ -41,13 +41,13 @@
                 <td id='darkPinkDeck' class="cardSlotDarkPink cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'><br><span id='darkPinkDeckText'>&nbsp;</span></td>
                 <td id='lightBlueDeck' class="cardSlotLightBlue cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'><br><span id='lightBlueDeckText'>&nbsp;</span></td>
                 <td id='darkBlueDeck' class="cardSlotDarkBlue cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'><br><span id='darkBlueDeckText'>&nbsp;</span></td>
-                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><img id='spinnerWheel' class='spinner' src='assets/spinner.png'><br><span id='spinnerText'>&nbsp;</span></td>
+                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><span class="spinner"><img id='spinnerWheel' style='display:none' class='spinnerArrow rotate' src='assets/arrow.png'></span><br><span id='spinnerText'>&nbsp;</span></td>
         </table>
         </td>
-        <td style="vertical-align:top">
+        <td class="playerInfo">
             <table>
                 <tr><td><img id='playerAvatar' class='card'></td></tr>
-                <tr><td id='playerIngredients'></td></tr>
+                <tr><td id='playerIngredients' class="playerIngredients"></td></tr>
             </table>
 
         </td>
@@ -86,19 +86,48 @@
                                                 { type : "Ingredient", color : "lightPink", name : "Sugar", points : 1, image : "assets/lightPinkSugar.png" },
 
                                                 { type : "Food", name : "IceCream", points : 20, image : "assets/purpleIceCream.png",
-                                                    ingredients : [ "Sugar", "Sugar", "Cream", "Cream", "Vanilla", "Egg" ] },
+                                                    ingredients : [ 
+                                                                    { count : 2, name : "Sugar" }, 
+                                                                    { count : 2, name : "Cream" },
+                                                                    { count : 1, name : "Vanilla" },
+                                                                    { count : 1, name : "Egg" }
+                                                                ] },
                                                 { type : "Food", name : "WhippedCream", points : 10, image : "assets/purpleWhippedCream.png",
-                                                    ingredients : [ "Sugar", "Cream", "Cream" ] },
+                                                    ingredients : [ 
+                                                                    { count : 1, name : "Sugar" },
+                                                                    { count : 2, name : "Cream" } 
+                                                                ] },
                                                 { type : "Food", name : "StrawberrySauce", points : 15, image : "assets/strawberrySauce.png",
-                                                    ingredients : [ "Strawberry", "Strawberry", "Sugar", "Sugar" ] },
+                                                    ingredients : [ 
+                                                                    { count : 2, name : "Strawberry" },
+                                                                    { count : 2, name : "Sugar" }
+                                                                ] },
                                                 { type : "Food", name : "ChocolateSauce", points : 20, image : "assets/purpleChocolateSauce.png",
-                                                    ingredients : [ "Sugar", "Sugar", "Sugar", "Cream", "Cocoa", "Cocoa" ] },
+                                                    ingredients : [ 
+                                                                    { count : 3, name : "Sugar" },
+                                                                    { count : 1, name : "Cream" },
+                                                                    { count : 2, name : "Cocoa" }
+                                                                ] },
                                                 { type : "Food", name : "CaramelSauce", points : 15, image : "assets/purpleCaramelSauce.png",
-                                                    ingredients : [ "Sugar", "Sugar", "Sugar", "Sugar", "Cream", "Vanilla", "Butter" ] },
+                                                    ingredients : [ 
+                                                                    { count : 4, name : "Sugar" },
+                                                                    { count : 1, name : "Cream" },
+                                                                    { count : 1, name : "Vanilla" },
+                                                                    { count : 1, name : "Butter" }
+                                                                ] },
                                                 { type : "Food", name : "Cones", points: 10, image : "assets/purpleCones.png",
-                                                    ingredients : [ "Sugar", "Egg", "Egg", "Butter", "Flour", "Flour" ]},
+                                                    ingredients : [ 
+                                                                    { count : 1, name : "Sugar" },
+                                                                    { count : 2, name : "Egg" },
+                                                                    { count : 1, name : "Butter" },
+                                                                    { count : 2, name : "Flour" }
+                                                                ] },
                                                 { type : "Food", name : "Sprinkles", points: 10, image : "assets/purpleSprinkles.png",
-                                                    ingredients : [ "Sugar", "Sugar", "Sugar", "Vanilla", "Egg" ]}
+                                                    ingredients : [ 
+                                                                    { count : 3, name : "Sugar" },
+                                                                    { count : 1, name : "Vanilla" },
+                                                                    { count : 1, name : "Egg" }
+                                                                ] }
                                         ],
                                 lightPinkDeck : [ 
                                                 { count : 40, name : "Sugar" },
@@ -181,8 +210,14 @@
             let currentPlayer = -1;
             let cardPicksLeft = 0;
             let extraTurns = 0;
+            let isSpinning = 0;
 
             showPlayer(0);
+
+            // Generate a random number between first and last
+            function random(first,last) { 
+                return Math.floor(Math.random() * (last-first+1)) + first; 
+            } // random
 
             // Pick a random card from the deck and remove
             function pickCard(o, deck) {
@@ -204,8 +239,8 @@
                     return;
                 } // if
 
-                // Select card
-                i = Math.floor(Math.random() * deck.length);
+                // Select card from remaining deck
+                i = random(1, deck.length);
 
                 // Update shown card
                 document.getElementById(o.id+'Text').innerHTML = deck[i].name;
@@ -234,27 +269,13 @@
                 showPlayer();
             } // pickCard
 
-            function moveNextPlayer(o) {
-                if ( cardPicksLeft > 0 ) {
-                    alert(players[currentPlayer].name + " still needs to pick up a card");
-                    return;
-                } // if
+            function spinDone(o) {
+                // Hide spinner
+                isSpinning = 0;
+                document.getElementById('spinnerWheel').style.display = "none";
 
-                // Reset flipped cards
-                objs = document.getElementsByClassName('cardSlot');
-                for ( i=0; i<objs.length; i++ ) {
-                    document.getElementById(objs[i].id+'Card').src = '';
-                    document.getElementById(objs[i].id+'Text').innerHTML = '';
-                } // for
-
-                // Dice roll
-                i = Math.floor(Math.random() * 6) + 1;
-
-                // Set next player
-                if ( extraTurns > 0 )
-                    extraTurns--;
-                else
-                    currentPlayer = (currentPlayer+1) % players.length;
+                // Dice roll from 1 to 6
+                i = random(1, 6);
 
                 // Update spinner text
                 document.getElementById(o.id+'Text').innerHTML = players[currentPlayer].name + ' spun ' + i;
@@ -269,6 +290,40 @@
 
                 // Show player info
                 showPlayer();
+            } // spinDone
+
+            function moveNextPlayer(o) {
+                if ( cardPicksLeft > 0 ) {
+                    alert(players[currentPlayer].name + " still needs to pick up a card");
+                    return;
+                } // if
+
+                // Reset flipped cards
+                objs = document.getElementsByClassName('cardSlot');
+                for ( i=0; i<objs.length; i++ ) {
+                    document.getElementById(objs[i].id+'Card').src = '';
+                    document.getElementById(objs[i].id+'Text').innerHTML = '';
+                } // for
+
+                // Show animation for 5 seconds
+                if ( isSpinning == 0 ) {
+                    isSpinning = 1;
+
+                    // Set next player
+                    if ( extraTurns > 0 )
+                        extraTurns--;
+                    else
+                        currentPlayer = (currentPlayer+1) % players.length;
+
+                    // Show spinner
+                    document.getElementById('spinnerWheel').style.display = "";
+
+                    // Set spinner timeout between 3s and 5s
+                    window.setTimeout(function() { spinDone(o) }, random(3000,5000));
+
+                    // Update spinner text
+                    document.getElementById(o.id+'Text').innerHTML = players[currentPlayer].name + ' is spinning';
+                } // if
             } // moveNextPlayer
 
             function showPlayer(playerId =currentPlayer) {
@@ -290,7 +345,7 @@
                 // Update current player image
                 document.getElementById('playerAvatar').src = players[playerId].image;
 
-                let t = players[playerId].name + ' has: ';
+                let t = "<center>" + players[playerId].name + '</center><br>Ingredients:<br>';
                 let points = 0;
 
                 // List ingredients for current player
@@ -303,7 +358,7 @@
                         points += players[playerId].ingredients[i].count * players[playerId].ingredients[i].points;
                     } // for
                     t = t + "</ul>";
-                    t = t + "and " + points + " point(s)";
+                    t = t + "<br>Points: " + points;
                 } else {
                     t = t + "no cards yets";
                 } // if
