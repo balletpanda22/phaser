@@ -42,7 +42,7 @@
                 <td id='darkPinkDeck' class="cardSlotDarkPink cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'></td>
                 <td id='lightBlueDeck' class="cardSlotLightBlue cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'></td>
                 <td id='darkBlueDeck' class="cardSlotDarkBlue cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'></td>
-                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><span class="spinner"><img id='spinnerWheel' style='' class='spinnerArrow rotate' src='assets/arrow.png'></span><span id='spinnerText'>&nbsp;</span></td>
+                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><span class="spinner"><img id='spinnerWheel' class='spinnerArrow rotate' src='assets/arrow.png'></span><span id='spinnerText'>&nbsp;</span></td>
         </table>
         </td>
         <td id="playerInfo0" class="playerInfo0">
@@ -53,7 +53,7 @@
             </table>
             <table style="height:70px">
                 <tr><td class="playerSection"><select id='playerTrades0' style="width:84px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(0)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(0)">+</button></td></tr>
-                <tr><td class="playerSection"><div id='playerPoints0'></div></td></tr>
+                <tr><td class="playerSection" style="font-size:24px; text-align:center;"><div id='playerPoints0'></div></td></tr>
             </table>
         </td>
         <td id="playerInfo1" class="playerInfo1">
@@ -64,7 +64,7 @@
             </table>
             <table style="height:70px">
                 <tr><td class="playerSection"><select id='playerTrades1' style="width:84px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(1)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(1)">+</button></td></tr>
-                <tr><td class="playerSection"><div id='playerPoints1'></div></td></tr>
+                <tr><td class="playerSection" style="font-size:24px; text-align:center;"><div id='playerPoints1'></div></td></tr>
             </table>
         </td>
         <td id="playerInfo2" class="playerInfo2">
@@ -75,7 +75,7 @@
             </table>
             <table style="height:70px">
                 <tr><td class="playerSection"><select id='playerTrades2' style="width:84px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(2)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(2)">+</button></td></tr>
-                <tr><td class="playerSection"><div id='playerPoints2'></div></td></tr>
+                <tr><td class="playerSection" style="font-size:24px; text-align:center;"><div id='playerPoints2'></div></td></tr>
             </table>
         </td>
         <td id="playerInfo3" class="playerInfo3">
@@ -86,10 +86,64 @@
             </table>
             <table style="height:70px">
                 <tr><td class="playerSection"><select id='playerTrades3' style="width:84px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
-                <tr><td class="playerSection"><div id='playerPoints3'></div></td></tr>
+                <tr><td class="playerSection" style="font-size:24px; text-align:center;"><div id='playerPoints3'></div></td></tr>
             </table>
         </td>
         </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                <table style="border:solid; border-color:#D6BFFF; border-width:2px; margin-left:30px">
+                    <tr>
+                        <th style="background-color:#FFE0F0; padding:5px;"></th>
+                        <th style="background-color:#FFE0F0; padding:5px;">Recipe</th>
+                        <th style="background-color:#FFE0F0; padding:5px;">=</th>
+                        <th style="background-color:#FFE0F0; padding:5px;">Ingredients</th>
+                        <th style="background-color:#EBE0FF; padding:5px;">\ (^o^) /</th>
+                        <th style="background-color:#E0F7FF; padding:5px;">Recipe</th>
+                        <th style="background-color:#E0F7FF; padding:5px;">=</th>
+                        <th style="background-color:#E0F7FF; padding:5px;">Ingredients</th>
+                        <th style="background-color:#E0F7FF; padding:5px;"></th>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#FFBFE0; padding:5px;"></td>
+                        <td style="background-color:#FFBFE0; padding:5px;">Caramel Sauce</td>
+                        <td style="background-color:#FFBFE0; padding:5px;"></td>
+                        <td style="background-color:#FFBFE0; padding:5px;">1 butter + 1 cream + 4 sugars + 1 vanilla</td>
+                        <td style="background-color:#D6BFFF; padding:5px;"></td>
+                        <td style="background-color:#BFEFFF; padding:5px;">Chocolate Sauce</td>
+                        <td style="background-color:#BFEFFF; padding:5px;"></td>
+                        <td style="background-color:#BFEFFF; padding:5px;">2 cocoas + 1 cream + 2 sugars</td>
+                        <td style="background-color:#BFEFFF; padding:5px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#FFE0F0; padding:5px;"></td>
+                        <td style="background-color:#FFE0F0; padding:5px;">Ice Cream</td>
+                        <td style="background-color:#FFE0F0; padding:5px;"></td>
+                        <td style="background-color:#FFE0F0; padding:5px;">2 creams + 1 egg + 2 sugars + 1 vanilla</td>
+                        <td style="background-color:#EBE0FF; padding:5px;"></td>
+                        <td style="background-color:#E0F7FF; padding:5px;">Sprinkles</td>
+                        <td style="background-color:#E0F7FF; padding:5px;"></td>
+                        <td style="background-color:#E0F7FF; padding:5px;">1 egg + 3 sugars + 1 vanilla</td>
+                        <td style="background-color:#E0F7FF; padding:5px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#FFBFE0; padding:5px;"></td>
+                        <td style="background-color:#FFBFE0; padding:5px;">Strawberry Sauce</td>
+                        <td style="background-color:#FFBFE0; padding:5px;"></td>
+                        <td style="background-color:#FFBFE0; padding:5px;">2 strawberries + 2 sugars</td>
+                        <td style="background-color:#D6BFFF; padding:5px;"></td>
+                        <td style="background-color:#BFEFFF; padding:5px;">Whipped Cream</td>
+                        <td style="background-color:#BFEFFF; padding:5px;"></td>
+                        <td style="background-color:#BFEFFF; padding:5px;">2 creams + 1 sugar</td>
+                        <td style="background-color:#BFEFFF; padding:5px;"></td>
+                    </tr>
+                </table>
+                </td>
+                <td style="font-size:50px; padding:40px;">Be the first to 50 points!</td>
+            </tr>
+
         </table>
         <script>
             // Game configuration
@@ -471,7 +525,7 @@
                             points += players[i].ingredients[j].count * players[i].ingredients[j].points;
                         } // for
                     } else {
-                        t = t + "no cards yets";
+                        t = t + "no cards yet";
                     } // if
 
                     document.getElementById('playerName'+i).innerHTML = players[i].name;
