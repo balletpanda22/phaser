@@ -9,15 +9,18 @@ img[src=''] { display: none; }
 .lightBlue { /*background-color:#7FDFFF;*/ }
 .darkBlue { /*background-color:#00BFFF;*/ }
 .board { background-image:url("SpeedySundaes.png"); background-size:cover; display:block; width:1000px; height:375px; }
-.boardTableSpace { width:125px; height:125px; text-align:center; }
-.boardTableAvatar { width:60px; height:60px; }
+.boardTableSpace { text-align:center; }
+.boardTableAvatar { width:55px; height:55px; }
 .boardTableAvatar[src] { display:inline; }
 .playerName { font-size:24px; font-weight:bold; text-align:center; }
-.playerInfo { height:100%; text-align:center; vertical-align:top; background:plum; border-radius:40px; padding: 10px 5px; }
+.playerInfo0 { height:100%; text-align:center; vertical-align:top; background:#FFC7A5; border-radius:40px; padding: 10px 10px; }
+.playerInfo1 { height:100%; text-align:center; vertical-align:top; background:#FFFABF; border-radius:40px; padding: 10px 10px; }
+.playerInfo2 { height:100%; text-align:center; vertical-align:top; background:#BFECFF; border-radius:40px; padding: 10px 10px; }
+.playerInfo3 { height:100%; text-align:center; vertical-align:top; background:#FFBFCF; border-radius:40px; padding: 10px 10px; }
 .playerSection { text-align:left; padding: 5px; }
 .trade { width:20px; height:25px; border-radius:40px; text-align:center; background:darkturquoise; 
                         font-size:12px;}
-.cardSlot { text-align:center; width:160px; height:240px; border-radius: 40px; border:10px solid antiquewhite; }
+.cardSlot { text-align:center; width:160px; height:240px }
 .cardSlotLightPink { background-image:url("assets/lightpinkDeckCover.png"); background-size:cover; 
                         background-repeat:no-repeat; background-position:center; }
 .cardSlotDarkPink { background-image:url("assets/darkpinkDeckCover.png"); background-size:cover; 
