@@ -52,7 +52,7 @@
                 <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients0'></div></td></tr>
             </table>
             <table style="height:70px">
-                <tr><td class="playerSection"><select id='playerTrades0' style="width:100px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(0)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(0)">+</button></td></tr>
+                <tr><td class="playerSection"><select id='playerTrades0' style="width:84px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(0)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(0)">+</button></td></tr>
                 <tr><td class="playerSection"><div id='playerPoints0'></div></td></tr>
             </table>
         </td>
@@ -63,7 +63,7 @@
                 <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients1'></div></td></tr>
             </table>
             <table style="height:70px">
-                <tr><td class="playerSection"><select id='playerTrades1' style="width:100px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(1)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(1)">+</button></td></tr>
+                <tr><td class="playerSection"><select id='playerTrades1' style="width:84px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(1)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(1)">+</button></td></tr>
                 <tr><td class="playerSection"><div id='playerPoints1'></div></td></tr>
             </table>
         </td>
@@ -74,7 +74,7 @@
                 <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients2'></div></td></tr>
             </table>
             <table style="height:70px">
-                <tr><td class="playerSection"><select id='playerTrades2' style="width:100px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(2)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(2)">+</button></td></tr>
+                <tr><td class="playerSection"><select id='playerTrades2' style="width:84px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(2)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(2)">+</button></td></tr>
                 <tr><td class="playerSection"><div id='playerPoints2'></div></td></tr>
             </table>
         </td>
@@ -85,7 +85,7 @@
                 <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients3'></div></td></tr>
             </table>
             <table style="height:70px">
-                <tr><td class="playerSection"><select id='playerTrades3' style="width:100px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
+                <tr><td class="playerSection"><select id='playerTrades3' style="width:84px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
                 <tr><td class="playerSection"><div id='playerPoints3'></div></td></tr>
             </table>
         </td>
@@ -427,14 +427,12 @@
 
                     // List ingredients for current player
                     if (players[i].ingredients.length > 0 ) {
-                        t = t + "<ul>";
                         for (j=0; j<players[i].ingredients.length; j++) {
-                            t = t + "<li>" + players[i].ingredients[j].name 
+                            t = t + players[i].ingredients[j].name 
                                     + (players[i].ingredients[j].count>1?(" (x " + players[i].ingredients[j].count + ")"):"") 
-                                    + "</li>";
+                                    + "<br>";
                             points += players[i].ingredients[j].count * players[i].ingredients[j].points;
                         } // for
-                        t = t + "</ul>";
                     } else {
                         t = t + "no cards yets";
                     } // if
@@ -489,6 +487,7 @@
                 // Add ingredient to player
                 } else {
                     newCard = JSON.parse(JSON.stringify( config.cards.find(cards => cards.name === cardName) ) );
+                    newCard.count = 1;
                     players[playerId].ingredients.push(newCard);
                 } // ifs
                 showPlayer(playerId);
