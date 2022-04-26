@@ -52,7 +52,7 @@
                 <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients0'></div></td></tr>
             </table>
             <table style="height:70px">
-                <tr><td class="playerSection"><select id='playerTrades0' style="width:100px"><option>Abc</option></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
+                <tr><td class="playerSection"><select id='playerTrades0' style="width:100px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(0)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(0)">+</button></td></tr>
                 <tr><td class="playerSection"><div id='playerPoints0'></div></td></tr>
             </table>
         </td>
@@ -63,7 +63,7 @@
                 <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients1'></div></td></tr>
             </table>
             <table style="height:70px">
-                <tr><td class="playerSection"><select id='playerTrades1' style="width:100px"><option>Abc</option></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
+                <tr><td class="playerSection"><select id='playerTrades1' style="width:100px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(1)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(1)">+</button></td></tr>
                 <tr><td class="playerSection"><div id='playerPoints1'></div></td></tr>
             </table>
         </td>
@@ -74,7 +74,7 @@
                 <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients2'></div></td></tr>
             </table>
             <table style="height:70px">
-                <tr><td class="playerSection"><select id='playerTrades2' style="width:100px"><option>Abc</option></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
+                <tr><td class="playerSection"><select id='playerTrades2' style="width:100px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(2)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(2)">+</button></td></tr>
                 <tr><td class="playerSection"><div id='playerPoints2'></div></td></tr>
             </table>
         </td>
@@ -85,7 +85,7 @@
                 <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients3'></div></td></tr>
             </table>
             <table style="height:70px">
-                <tr><td class="playerSection"><select id='playerTrades3' style="width:100px"><option>Abc</option></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
+                <tr><td class="playerSection"><select id='playerTrades3' style="width:100px"></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
                 <tr><td class="playerSection"><div id='playerPoints3'></div></td></tr>
             </table>
         </td>
@@ -212,9 +212,9 @@
                 lightPinkDeck = [];
                 for ( i=0; i<config.lightPinkDeck.length; i++ ) {
                     for ( j=0; j<config.lightPinkDeck[i].count; j++ ) {
-                        card = config.cards.find(cards => cards.color === 'lightPink' && cards.name === config.lightPinkDeck[i].name);
-                        card.count = 1;
-                        lightPinkDeck.push(card);
+                        newCard = JSON.parse(JSON.stringify(config.cards.find(cards => cards.color === 'lightPink' && cards.name === config.lightPinkDeck[i].name)));
+                        newCard.count = 1;
+                        lightPinkDeck.push(newCard);
                     } // for
                 } // for
 
@@ -222,9 +222,9 @@
                 darkPinkDeck = [];
                 for ( i=0; i<config.darkPinkDeck.length; i++ ) {
                     for ( j=0; j<config.darkPinkDeck[i].count; j++ ) {
-                        card = config.cards.find(cards => cards.color === 'darkPink' && cards.name === config.darkPinkDeck[i].name);
-                        card.count = 1;
-                        darkPinkDeck.push(card);
+                        newCard = JSON.parse(JSON.stringify(config.cards.find(cards => cards.color === 'darkPink' && cards.name === config.darkPinkDeck[i].name)));
+                        newCard.count = 1;
+                        darkPinkDeck.push(newCard);
                     } // for
                 } // for
 
@@ -232,9 +232,9 @@
                 lightBlueDeck = [];
                 for ( i=0; i<config.lightBlueDeck.length; i++ ) {
                     for ( j=0; j<config.lightBlueDeck[i].count; j++ ) {
-                        card = config.cards.find(cards => cards.color === 'lightBlue' && cards.name === config.lightBlueDeck[i].name);
-                        card.count = 1;
-                        lightBlueDeck.push(card);
+                        newCard = JSON.parse(JSON.stringify(config.cards.find(cards => cards.color === 'lightBlue' && cards.name === config.lightBlueDeck[i].name)));
+                        newCard.count = 1;
+                        lightBlueDeck.push(newCard);
                     } // for
                 } // for
 
@@ -242,9 +242,9 @@
                 darkBlueDeck = [];
                 for ( i=0; i<config.darkBlueDeck.length; i++ ) {
                     for ( j=0; j<config.darkBlueDeck[i].count; j++ ) {
-                        card = config.cards.find(cards => cards.color === 'darkBlue' && cards.name === config.darkBlueDeck[i].name);
-                        card.count = 1;
-                        darkBlueDeck.push(card);
+                        newCard = JSON.parse(JSON.stringify(config.cards.find(cards => cards.color === 'darkBlue' && cards.name === config.darkBlueDeck[i].name)));
+                        newCard.count = 1;
+                        darkBlueDeck.push(newCard);
                     } // for
                 } // for
 
@@ -480,15 +480,17 @@
             function addCard(playerId) {
                 // Get card to add
                 cardName = document.getElementById('playerTrades'+playerId).value;
-                card = players[playerId].ingredients.find(ingredients => ingredients.name === cardName);
+                myCard = players[playerId].ingredients.find(ingredients => ingredients.name === cardName);
 
                 // Player already has ingredient, increase count
-                if ( card )
-                    card.count++;
+                if ( myCard ) {
+                    myCard.count++;
 
                 // Add ingredient to player
-                else
-                    players[playerId].ingredients.push(config.cards.find(cards => cards.name === cardName));
+                } else {
+                    newCard = JSON.parse(JSON.stringify( config.cards.find(cards => cards.name === cardName) ) );
+                    players[playerId].ingredients.push(newCard);
+                } // ifs
                 showPlayer(playerId);
             } // addCard
 
@@ -500,7 +502,7 @@
                 // Player has ingredient
                 if ( cardIx >= 0 ) {
                     // Reduce count if more than 1
-                    if ( players[playerId].ingredients[cardIx].count > 0 ) {
+                    if ( players[playerId].ingredients[cardIx].count > 1 ) {
                         players[playerId].ingredients[cardIx].count--;
                     // Remove ingredient if last one
                     } else {
