@@ -1,4 +1,4 @@
-body { background: antiquewhite; }
+body { background: #D6BFFF; }
 img { display: none; }
 img[src] { display: inline; }
 img[src=''] { display: none; }
