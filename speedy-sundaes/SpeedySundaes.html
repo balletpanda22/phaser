@@ -36,20 +36,58 @@
                     </tr>
                 </table>
             </span></td></tr>
-            <tr style="height:40px"></tr>
-            <tr><td id='lightPinkDeck' class="cardSlotLightPink cardSlot lightPink" onclick="javascript:pickCard(this,lightPinkDeck);"><img id='lightPinkDeckCard' class='card'><br><span id='lightPinkDeckText'>&nbsp;</span></td>
-                <td id='darkPinkDeck' class="cardSlotDarkPink cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'><br><span id='darkPinkDeckText'>&nbsp;</span></td>
-                <td id='lightBlueDeck' class="cardSlotLightBlue cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'><br><span id='lightBlueDeckText'>&nbsp;</span></td>
-                <td id='darkBlueDeck' class="cardSlotDarkBlue cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'><br><span id='darkBlueDeckText'>&nbsp;</span></td>
-                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><span class="spinner"><img id='spinnerWheel' style='display:none' class='spinnerArrow rotate' src='assets/arrow.png'></span><br><span id='spinnerText'>&nbsp;</span></td>
+            <tr style="height:40px"><td colspan="5">Game Mode: <select id='playerCount' onchange="javascript:resetGame()"><option value='2'>2 Players</option><option value='3'>3 Players</option><option value='4' selected>4 Players</option></select></td>
+        </td></tr>
+            <tr><td id='lightPinkDeck' class="cardSlotLightPink cardSlot lightPink" onclick="javascript:pickCard(this,lightPinkDeck);"><img id='lightPinkDeckCard' class='card'></td>
+                <td id='darkPinkDeck' class="cardSlotDarkPink cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'></td>
+                <td id='lightBlueDeck' class="cardSlotLightBlue cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'></td>
+                <td id='darkBlueDeck' class="cardSlotDarkBlue cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'></td>
+                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><span class="spinner"><img id='spinnerWheel' style='display:none' class='spinnerArrow rotate' src='assets/arrow.png'></span><span id='spinnerText'>&nbsp;</span></td>
         </table>
         </td>
         <td class="playerInfo">
-            <table>
-                <tr><td><img id='playerAvatar' class='card'></td></tr>
-                <tr><td id='playerIngredients' class="playerIngredients"></td></tr>
+            <table style="height:600px">
+                <tr><td style="height:80px"><center><img id='playerAvatar0' class='card'></center></td></tr>
+                <tr><td style="height:50px"><div class="playerSection"><div id='playerName0' class='playerName'></div></td></tr>
+                <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients0'></div></td></tr>
             </table>
-
+            <table style="height:70px">
+                <tr><td class="playerSection"><select id='playerTrades0' style="width:100px"><option>Abc</option></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
+                <tr><td class="playerSection"><div id='playerPoints0'></div></td></tr>
+            </table>
+        </td>
+        <td class="playerInfo">
+            <table style="height:600px">
+                <tr><td style="height:80px"><center><img id='playerAvatar1' class='card'></center></td></tr>
+                <tr><td style="height:50px"><div class="playerSection"><div id='playerName1' class='playerName'></div></td></tr>
+                <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients1'></div></td></tr>
+            </table>
+            <table style="height:70px">
+                <tr><td class="playerSection"><select id='playerTrades1' style="width:100px"><option>Abc</option></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
+                <tr><td class="playerSection"><div id='playerPoints1'></div></td></tr>
+            </table>
+        </td>
+        <td class="playerInfo">
+            <table style="height:600px">
+                <tr><td style="height:80px"><center><img id='playerAvatar2' class='card'></center></td></tr>
+                <tr><td style="height:50px"><div class="playerSection"><div id='playerName2' class='playerName'></div></td></tr>
+                <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients2'></div></td></tr>
+            </table>
+            <table style="height:70px">
+                <tr><td class="playerSection"><select id='playerTrades2' style="width:100px"><option>Abc</option></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
+                <tr><td class="playerSection"><div id='playerPoints2'></div></td></tr>
+            </table>
+        </td>
+        <td class="playerInfo">
+            <table style="height:600px">
+                <tr><td style="height:80px"><center><img id='playerAvatar3' class='card'></center></td></tr>
+                <tr><td style="height:50px"><div class="playerSection"><div id='playerName3' class='playerName'></div></td></tr>
+                <tr><td style="vertical-align:top" class="playerSection"><div id='playerIngredients3'></div></td></tr>
+            </table>
+            <table style="height:70px">
+                <tr><td class="playerSection"><select id='playerTrades3' style="width:100px"><option>Abc</option></select>&nbsp;<button id='trade' class='trade' onclick="javascript:removeCard(3)">-</button>&nbsp;<button id='trade' class='trade' onclick="javascript:addCard(3)">+</button></td></tr>
+                <tr><td class="playerSection"><div id='playerPoints3'></div></td></tr>
+            </table>
         </td>
         </tr>
         </table>
@@ -158,61 +196,81 @@
                             }   
             console.log(config);
 
-            // Add cards to Light Pink deck
             let lightPinkDeck = [];
-            for ( i=0; i<config.lightPinkDeck.length; i++ ) {
-                for ( j=0; j<config.lightPinkDeck[i].count; j++ ) {
-                    card = config.cards.find(cards => cards.color === 'lightPink' && cards.name === config.lightPinkDeck[i].name);
-                    card.count = 1;
-                    lightPinkDeck.push(card);
-                } // for
-            } // for
-
-            // Add cards to Dark Pink deck
             let darkPinkDeck = [];
-            for ( i=0; i<config.darkPinkDeck.length; i++ ) {
-                for ( j=0; j<config.darkPinkDeck[i].count; j++ ) {
-                    card = config.cards.find(cards => cards.color === 'darkPink' && cards.name === config.darkPinkDeck[i].name);
-                    card.count = 1;
-                    darkPinkDeck.push(card);
-                } // for
-            } // for
-
-            // Add cards to Light Blue deck
             let lightBlueDeck = [];
-            for ( i=0; i<config.lightBlueDeck.length; i++ ) {
-                for ( j=0; j<config.lightBlueDeck[i].count; j++ ) {
-                    card = config.cards.find(cards => cards.color === 'lightBlue' && cards.name === config.lightBlueDeck[i].name);
-                    card.count = 1;
-                    lightBlueDeck.push(card);
-                } // for
-            } // for
-
-            // Add cards to Dark Blue deck
             let darkBlueDeck = [];
-            for ( i=0; i<config.darkBlueDeck.length; i++ ) {
-                for ( j=0; j<config.darkBlueDeck[i].count; j++ ) {
-                    card = config.cards.find(cards => cards.color === 'darkBlue' && cards.name === config.darkBlueDeck[i].name);
-                    card.count = 1;
-                    darkBlueDeck.push(card);
-                } // for
-            } // for
-
-            // Add avatars to board
             let players = [];
-            for ( i=0; i<config.players.length; i++ ) {
-                p = config.players[i];
-                p.position = 0;
-                p.ingredients = [];
-                players.push(p);
-            } // for
-
             let currentPlayer = -1;
             let cardPicksLeft = 0;
             let extraTurns = 0;
             let isSpinning = 0;
 
-            showPlayer(0);
+            // Initialize the game
+            function resetGame() {
+                // Add cards to Light Pink deck
+                lightPinkDeck = [];
+                for ( i=0; i<config.lightPinkDeck.length; i++ ) {
+                    for ( j=0; j<config.lightPinkDeck[i].count; j++ ) {
+                        card = config.cards.find(cards => cards.color === 'lightPink' && cards.name === config.lightPinkDeck[i].name);
+                        card.count = 1;
+                        lightPinkDeck.push(card);
+                    } // for
+                } // for
+
+                // Add cards to Dark Pink deck
+                darkPinkDeck = [];
+                for ( i=0; i<config.darkPinkDeck.length; i++ ) {
+                    for ( j=0; j<config.darkPinkDeck[i].count; j++ ) {
+                        card = config.cards.find(cards => cards.color === 'darkPink' && cards.name === config.darkPinkDeck[i].name);
+                        card.count = 1;
+                        darkPinkDeck.push(card);
+                    } // for
+                } // for
+
+                // Add cards to Light Blue deck
+                lightBlueDeck = [];
+                for ( i=0; i<config.lightBlueDeck.length; i++ ) {
+                    for ( j=0; j<config.lightBlueDeck[i].count; j++ ) {
+                        card = config.cards.find(cards => cards.color === 'lightBlue' && cards.name === config.lightBlueDeck[i].name);
+                        card.count = 1;
+                        lightBlueDeck.push(card);
+                    } // for
+                } // for
+
+                // Add cards to Dark Blue deck
+                darkBlueDeck = [];
+                for ( i=0; i<config.darkBlueDeck.length; i++ ) {
+                    for ( j=0; j<config.darkBlueDeck[i].count; j++ ) {
+                        card = config.cards.find(cards => cards.color === 'darkBlue' && cards.name === config.darkBlueDeck[i].name);
+                        card.count = 1;
+                        darkBlueDeck.push(card);
+                    } // for
+                } // for
+
+                // Add avatars to board
+                players = [];
+                nPlayers = document.getElementById('playerCount').value;
+                for ( i=0; i<config.players.length && i<nPlayers; i++ ) {
+                    p = config.players[i];
+                    p.position = 0;
+                    p.ingredients = [];
+                    players.push(p);
+                } // for
+
+                console.log("Reset game for " + nPlayers + " players");
+
+                currentPlayer = -1;
+                cardPicksLeft = 0;
+                extraTurns = 0;
+                isSpinning = 0;
+
+                // Show starting positions
+                showPlayer(0);
+            } // resetGame
+
+            // Initialize game
+            resetGame();
 
             // Generate a random number between first and last
             function random(first,last) { 
@@ -243,8 +301,8 @@
                 i = random(1, deck.length);
 
                 // Update shown card
-                document.getElementById(o.id+'Text').innerHTML = deck[i].name;
-                document.getElementById(o.id+'Card').src = deck[i].image;
+                //document.getElementById(o.id+'Card').src = deck[i].image;
+                document.getElementById(o.id).style.backgroundImage = "url('" + deck[i].image + "')";
 
                 // Add card to player hand
                 card = players[currentPlayer].ingredients.find(ingredients => ingredients.name === deck[i].name);
@@ -293,19 +351,25 @@
             } // spinDone
 
             function moveNextPlayer(o) {
+                // Check if current player has completed turn
                 if ( cardPicksLeft > 0 ) {
                     alert(players[currentPlayer].name + " still needs to pick up a card");
                     return;
                 } // if
 
                 // Reset flipped cards
+                /*
                 objs = document.getElementsByClassName('cardSlot');
                 for ( i=0; i<objs.length; i++ ) {
                     document.getElementById(objs[i].id+'Card').src = '';
-                    document.getElementById(objs[i].id+'Text').innerHTML = '';
                 } // for
+                */
+                document.getElementById("lightPinkDeck").style.backgroundImage = "url('assets/lightpinkDeckCover.png')";
+                document.getElementById("darkPinkDeck").style.backgroundImage = "url('assets/darkpinkDeckCover.png')";
+                document.getElementById("lightBlueDeck").style.backgroundImage = "url('assets/lightblueDeckCover.png')";
+                document.getElementById("darkBlueDeck").style.backgroundImage = "url('assets/darkblueDeckCover.png')";
 
-                // Show animation for 5 seconds
+                // Show spinning animation 
                 if ( isSpinning == 0 ) {
                     isSpinning = 1;
 
@@ -319,11 +383,14 @@
                     document.getElementById('spinnerWheel').style.display = "";
 
                     // Set spinner timeout between 3s and 5s
-                    window.setTimeout(function() { spinDone(o) }, random(3000,5000));
+                    window.setTimeout(function() { spinDone(o) }, random(1000,1500));
 
                     // Update spinner text
                     document.getElementById(o.id+'Text').innerHTML = players[currentPlayer].name + ' is spinning';
                 } // if
+
+                // Show player info
+                showPlayer();
             } // moveNextPlayer
 
             function showPlayer(playerId =currentPlayer) {
@@ -342,28 +409,98 @@
                 if ( playerId < 0 )
                     return;
 
-                // Update current player image
-                document.getElementById('playerAvatar').src = players[playerId].image;
+                // Loop thru each player
+                for (i=0; i<players.length; i++) {
+                    // Update current player image
+                    document.getElementById('playerAvatar'+i).src = players[i].image;
 
-                let t = "<center>" + players[playerId].name + '</center><br>Ingredients:<br>';
-                let points = 0;
+                    let t = "Ingredients:<br>";
+                    let points = 0;
 
-                // List ingredients for current player
-                if (players[playerId].ingredients.length > 0 ) {
-                    t = t + "<ul>";
-                    for (i=0; i<players[playerId].ingredients.length; i++) {
-                        t = t + "<li>" + players[playerId].ingredients[i].name 
-                                + (players[playerId].ingredients[i].count>1?(" (x " + players[playerId].ingredients[i].count + ")"):"") 
-                                + "</li>";
-                        points += players[playerId].ingredients[i].count * players[playerId].ingredients[i].points;
+                    // List ingredients for current player
+                    if (players[i].ingredients.length > 0 ) {
+                        t = t + "<ul>";
+                        for (j=0; j<players[i].ingredients.length; j++) {
+                            t = t + "<li>" + players[i].ingredients[j].name 
+                                    + (players[i].ingredients[j].count>1?(" (x " + players[i].ingredients[j].count + ")"):"") 
+                                    + "</li>";
+                            points += players[i].ingredients[j].count * players[i].ingredients[j].points;
+                        } // for
+                        t = t + "</ul>";
+                    } else {
+                        t = t + "no cards yets";
+                    } // if
+
+                    document.getElementById('playerName'+i).innerHTML = players[i].name;
+                    document.getElementById('playerIngredients'+i).innerHTML = t;
+
+                    // Show available trades
+                    tradesHtml = "";
+                    for ( j=0; j<config.cards.length; j++ ) {
+/*                        
+                        if ( config.cards[j].type == "Food" ) {
+                            missingIngredients = false;
+                            // Loop thru required ingredients
+                            for ( k=0; k<config.cards[j].ingredients.length; k++ ) {
+                                // Loop thru players ingredients
+                                hasIngredient = false;
+                                for ( l=0; l<player[i].ingredients.length; l++ ) {
+                                    if ( config.cards[j].ingredients[k].name == player[i].ingredients[l].name )
+                                        hasIngredient = true;                                        
+                                } // for
+                                if ( ! hasIngredient )
+                                    missingIngredients = true;
+                            } // for
+
+                            if ( ! missingIngredients )                           
+                                tradesHtml += "<option>" + config.cards[j].name + "</option>";
+                        } // if
+*/
+                        tradesHtml += "<option>" + config.cards[j].name + "</option>";
                     } // for
-                    t = t + "</ul>";
-                    t = t + "<br>Points: " + points;
-                } else {
-                    t = t + "no cards yets";
-                } // if
-                document.getElementById('playerIngredients').innerHTML = t;
+                    document.getElementById('playerTrades'+i).innerHTML = tradesHtml;
+
+                    // Show current points
+                    document.getElementById('playerPoints'+i).innerHTML = "Points: " + points;
+                } // for
             } // showPlayer
+
+            function showTrades() {
+                alert("Not supported yet");
+            } // 
+
+            function addCard(playerId) {
+                cardName = document.getElementById('playerTrades'+playerId).value;
+                card = players[playerId].ingredients.find(ingredients => ingredients.name === cardName);
+
+                // Player already has ingredient, increase count
+                if ( card )
+                    card.count++;
+
+                // Add ingredient to player
+                else
+                    players[playerId].ingredients.push(config.cards.find(cards => cards.name === cardName));
+                showPlayer(playerId);
+            } // addCard
+
+            function removeCard(playerId) {
+                cardName = document.getElementById('playerTrades'+playerId).value;
+                cardIx = players[playerId].ingredients.findIndex(ingredients => ingredients.name === cardName)
+
+                // Player has ingredient
+                if ( cardIx >= 0 ) {
+                    // Reduce count if more than 1
+                    if ( players[playerId].ingredients[cardIx].count > 0 ) {
+                        players[playerId].ingredients[cardIx].count--;
+                    // Remove ingredient if last one
+                    } else {
+                        players[playerId].ingredients.splice(cardIx,1);
+                    } // if
+                } // if
+                showPlayer(playerId);
+            } // addCard
+            
+
         </script>
     </body>
 </html>

@@ -1,20 +1,23 @@
-body { background: antiquewhite; }
+body { background: antiquewhite; font-family:'Segoe UI'; }
 img { display: none; }
 img[src] { display: inline; }
 img[src=''] { display: none; }
 .center { display: block; margin-left: auto; margin-right: auto; width: 50%; }
 .hide { display:none; }
-.lightPink { background-color:#FF7FC5; }
-.darkPink { background-color:#FF008C; }
-.lightBlue { background-color:#7FDFFF; }
-.darkBlue { background-color:#00BFFF; }
+.lightPink { /*background-color:#FF7FC5;*/ }
+.darkPink { /*background-color:#FF008C;*/ }
+.lightBlue { /*background-color:#7FDFFF;*/ }
+.darkBlue { /*background-color:#00BFFF;*/ }
 .board { background-image:url("SpeedySundaes.png"); background-size:cover; display:block; width:1000px; height:375px; }
 .boardTableSpace { width:125px; height:125px; text-align:center; }
 .boardTableAvatar { width:60px; height:60px; }
 .boardTableAvatar[src] { display:inline; }
-.playerInfo { height:100%; text-align:center; vertical-align:top; background:plum; border-radius:40px; }
-.playerIngredients { text-align:left; padding: 5px; }
-.cardSlot { text-align:center; width:180px; height:270px; border-radius: 40px; }
+.playerName { font-size:24px; font-weight:bold; text-align:center; }
+.playerInfo { height:100%; text-align:center; vertical-align:top; background:plum; border-radius:40px; padding: 10px 5px; }
+.playerSection { text-align:left; padding: 5px; }
+.trade { width:20px; height:25px; border-radius:40px; text-align:center; background:darkturquoise; 
+                        font-size:12px;}
+.cardSlot { text-align:center; width:160px; height:240px; border-radius: 40px; border:10px solid antiquewhite; }
 .cardSlotLightPink { background-image:url("assets/lightpinkDeckCover.png"); background-size:cover; 
                         background-repeat:no-repeat; background-position:center; }
 .cardSlotDarkPink { background-image:url("assets/darkpinkDeckCover.png"); background-size:cover; 
@@ -24,10 +27,10 @@ img[src=''] { display: none; }
 .cardSlotDarkBlue { background-image:url("assets/darkblueDeckCover.png"); background-size:cover; 
                         background-repeat:no-repeat; background-position:center; }
 .spinnerSlot { text-align:center; height:270px; border-radius: 40px; }
-.card { text-align:left; width:180px; height:180px; }
+.card { text-align:left; width:140px; height:140px; }
 .spinner { text-align:center; width:250px; height:250px; display:block;
                         background-image:url("assets/spinner.png"); background-size:cover; 
                         background-repeat:no-repeat; background-position:center;}
 .spinnerArrow { text-align:center; width:250px; height:250px; }
-.rotate { animation: rotation 2s infinite linear; }
+.rotate { animation: rotation 0.5s infinite linear; }
 @keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(359deg); } }
