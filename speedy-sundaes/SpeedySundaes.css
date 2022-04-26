@@ -1,4 +1,4 @@
-body { background: #D6BFFF; font-family:'Segoe UI';}
+body { background: #E3D3FF; font-family:'Segoe UI';}
 img { display: none; }
 img[src] { display: inline; }
 img[src=''] { display: none; }
@@ -13,14 +13,14 @@ img[src=''] { display: none; }
 .boardTableAvatar { width:55px; height:55px; }
 .boardTableAvatar[src] { display:inline; }
 .playerName { font-size:24px; font-weight:bold; text-align:center; }
-.playerInfo0 { height:100%; text-align:center; vertical-align:top; background:#FFC7A5; border-style:solid; border-width:10px; border-color:#D6BFFF; border-radius:40px; padding: 10px 10px; }
-.playerInfo1 { height:100%; text-align:center; vertical-align:top; background:#FFFABF; border-style:solid; border-width:10px; border-color:#D6BFFF; border-radius:40px; padding: 10px 10px; }
-.playerInfo2 { height:100%; text-align:center; vertical-align:top; background:#BFECFF; border-style:solid; border-width:10px; border-color:#D6BFFF; border-radius:40px; padding: 10px 10px; }
-.playerInfo3 { height:100%; text-align:center; vertical-align:top; background:#FFBFCF; border-style:solid; border-width:10px; border-color:#D6BFFF; border-radius:40px; padding: 10px 10px; }
+.playerInfo0 { height:100%; text-align:center; vertical-align:top; background:#FFC7A5; border-style:solid; border-width:6px; border-color:#E3D3FF; border-radius:40px; padding: 10px 10px; }
+.playerInfo1 { height:100%; text-align:center; vertical-align:top; background:#FFFABF; border-style:solid; border-width:6px; border-color:#E3D3FF; border-radius:40px; padding: 10px 10px; }
+.playerInfo2 { height:100%; text-align:center; vertical-align:top; background:#BFECFF; border-style:solid; border-width:6px; border-color:#E3D3FF; border-radius:40px; padding: 10px 10px; }
+.playerInfo3 { height:100%; text-align:center; vertical-align:top; background:#FFBFCF; border-style:solid; border-width:6px; border-color:#E3D3FF; border-radius:40px; padding: 10px 10px; }
 .playerSection { text-align:left; padding: 5px; font-size: 13px; }
 .trade { width:20px; height:25px; border-radius:40px; text-align:center; background:darkturquoise; 
                         font-size:12px;}
-.cardSlot { text-align:center; width:185px; height:240px }
+.cardSlot { text-align:center; width:180px; height:240px }
 .cardSlotLightPink { background-image:url("assets/lightpinkDeckCover.png"); background-size:cover; 
                         background-repeat:no-repeat; background-position:center; }
 .cardSlotDarkPink { background-image:url("assets/darkpinkDeckCover.png"); background-size:cover; 
@@ -37,3 +37,4 @@ img[src=''] { display: none; }
 .spinnerArrow { text-align:center; width:250px; height:250px; }
 .rotate { animation: rotation 0.5s infinite linear; animation-play-state: paused; }
 @keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(359deg); } }
+th {padding-right:15px; padding-left:15px; padding-top:5px; padding-bottom:5px}
