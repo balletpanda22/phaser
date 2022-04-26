@@ -42,7 +42,7 @@
                 <td id='darkPinkDeck' class="cardSlotDarkPink cardSlot darkPink" onclick="javascript:pickCard(this,darkPinkDeck);"><img id='darkPinkDeckCard' class='card'></td>
                 <td id='lightBlueDeck' class="cardSlotLightBlue cardSlot lightBlue" onclick="javascript:pickCard(this,lightBlueDeck);"><img id='lightBlueDeckCard' class='card'></td>
                 <td id='darkBlueDeck' class="cardSlotDarkBlue cardSlot darkBlue" onclick="javascript:pickCard(this,darkBlueDeck);"><img id='darkBlueDeckCard' class='card'></td>
-                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><span class="spinner"><img id='spinnerWheel' style='display:none' class='spinnerArrow rotate' src='assets/arrow.png'></span><span id='spinnerText'>&nbsp;</span></td>
+                <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><span class="spinner"><img id='spinnerWheel' style='' class='spinnerArrow rotate' src='assets/arrow.png'></span><span id='spinnerText'>&nbsp;</span></td>
         </table>
         </td>
         <td id="playerInfo0" class="playerInfo">
@@ -338,10 +338,46 @@
             function spinDone(o) {
                 // Hide spinner
                 isSpinning = 0;
-                document.getElementById('spinnerWheel').style.display = "none";
+                document.getElementById('spinnerWheel').style.animationPlayState = "paused";
+//                document.getElementById('spinnerWheel').style.display = "none";
 
+                // Get angle...hope this works
+                st = window.getComputedStyle(document.getElementById('spinnerWheel'), null);
+                tr = st.getPropertyValue("-webkit-transform") ||
+                        st.getPropertyValue("-moz-transform") ||
+                        st.getPropertyValue("-ms-transform") ||
+                        st.getPropertyValue("-o-transform") ||
+                        st.getPropertyValue("transform") ||
+                        "FAIL";
+                var splits = tr.split(',');
+                // parse the string to get a and b
+                var parenLoc = splits[0].indexOf('(');
+                var a = parseFloat(splits[0].substr(parenLoc+1));
+                var b = parseFloat(splits[1]);
+                // doing atan2 on b, a will give you the angle in radians
+                var rad = Math.atan2(b, a);
+                var deg = 180 * rad / Math.PI;
+                // instead of having values from -180 to 180, get 0 to 360
+                if (deg < 0) deg += 360;
+
+                // Map degrees to the spinner wheel values
+                if ( deg >= 140 && deg <= 200 )
+                    i = 1;
+                else if ( deg >= 200 && deg <= 255 ) 
+                    i = 2;
+                else if ( deg >= 255 && deg <= 325 )
+                    i = 3;
+                else if ( deg >= 325 || deg <= 20 )
+                    i = 4;
+                else if ( deg >= 20 && deg <= 90 )
+                    i = 5;
+                else if ( deg >= 90 && deg <= 140 )
+                    i = 6;
+
+                console.log("Degrees = " + deg + ", Value = " + i);
+                
                 // Dice roll from 1 to 6
-                i = random(1, 6);
+                //i = random(1, 6);
 
                 // Update spinner text
                 document.getElementById(o.id+'Text').innerHTML = players[currentPlayer].name + ' spun ' + i;
@@ -388,7 +424,8 @@
                         currentPlayer = (currentPlayer+1) % players.length;
 
                     // Show spinner
-                    document.getElementById('spinnerWheel').style.display = "";
+//                    document.getElementById('spinnerWheel').style.display = "";
+                    document.getElementById('spinnerWheel').style.animationPlayState = "running";
 
                     // Set spinner timeout between 3s and 5s
                     window.setTimeout(function() { spinDone(o) }, random(1000,1500));
