@@ -287,10 +287,10 @@
 
             // Pick a random card from the deck and remove
             function pickCard(o, deck) {
-                if ( cardPicksLeft <= 0 ) {
-                    alert("Next player needs to spin first");
-                    return;
-                } // if
+//                if ( cardPicksLeft <= 0 ) {
+//                    alert("Next player needs to spin first");
+//                    return;
+//                } // if
 
                 // No cards left in deck
                 if ( deck.length <= 0 ) {
@@ -320,8 +320,8 @@
                     players[currentPlayer].ingredients.push(deck[i]);
 
                 // Special cards
-                if ( deck[i].extraCards )
-                    cardPicksLeft += deck[i].extraCards;
+//                if ( deck[i].extraCards )
+//                    cardPicksLeft += deck[i].extraCards;
                 if ( deck[i].extraTurns )
                     extraTurns += deck[i].extraTurns;
 
