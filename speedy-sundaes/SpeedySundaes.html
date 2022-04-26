@@ -45,7 +45,7 @@
                 <td id='spinner' class="spinnerSlot" onclick="javascript:moveNextPlayer(this);"><span class="spinner"><img id='spinnerWheel' style='display:none' class='spinnerArrow rotate' src='assets/arrow.png'></span><span id='spinnerText'>&nbsp;</span></td>
         </table>
         </td>
-        <td class="playerInfo">
+        <td id="playerInfo0" class="playerInfo">
             <table style="height:600px">
                 <tr><td style="height:80px"><center><img id='playerAvatar0' class='card'></center></td></tr>
                 <tr><td style="height:50px"><div class="playerSection"><div id='playerName0' class='playerName'></div></td></tr>
@@ -56,7 +56,7 @@
                 <tr><td class="playerSection"><div id='playerPoints0'></div></td></tr>
             </table>
         </td>
-        <td class="playerInfo">
+        <td id="playerInfo1" class="playerInfo">
             <table style="height:600px">
                 <tr><td style="height:80px"><center><img id='playerAvatar1' class='card'></center></td></tr>
                 <tr><td style="height:50px"><div class="playerSection"><div id='playerName1' class='playerName'></div></td></tr>
@@ -67,7 +67,7 @@
                 <tr><td class="playerSection"><div id='playerPoints1'></div></td></tr>
             </table>
         </td>
-        <td class="playerInfo">
+        <td id="playerInfo2" class="playerInfo">
             <table style="height:600px">
                 <tr><td style="height:80px"><center><img id='playerAvatar2' class='card'></center></td></tr>
                 <tr><td style="height:50px"><div class="playerSection"><div id='playerName2' class='playerName'></div></td></tr>
@@ -78,7 +78,7 @@
                 <tr><td class="playerSection"><div id='playerPoints2'></div></td></tr>
             </table>
         </td>
-        <td class="playerInfo">
+        <td id="playerInfo3" class="playerInfo">
             <table style="height:600px">
                 <tr><td style="height:80px"><center><img id='playerAvatar3' class='card'></center></td></tr>
                 <tr><td style="height:50px"><div class="playerSection"><div id='playerName3' class='playerName'></div></td></tr>
@@ -256,8 +256,16 @@
                     p.position = 0;
                     p.ingredients = [];
                     players.push(p);
+
+                    // Show player info
+                    document.getElementById('playerInfo'+i).style.display = "";
                 } // for
 
+                // Hide avatars not playing
+                for ( ; i<config.players.length; i++ ) {
+                    // Hide player info
+                    document.getElementById('playerInfo'+i).style.display = "none";
+                } // for
                 console.log("Reset game for " + nPlayers + " players");
 
                 currentPlayer = -1;
@@ -373,7 +381,7 @@
                 if ( isSpinning == 0 ) {
                     isSpinning = 1;
 
-                    // Set next player
+                    // Set next player unless extra turns
                     if ( extraTurns > 0 )
                         extraTurns--;
                     else
@@ -470,6 +478,7 @@
             } // 
 
             function addCard(playerId) {
+                // Get card to add
                 cardName = document.getElementById('playerTrades'+playerId).value;
                 card = players[playerId].ingredients.find(ingredients => ingredients.name === cardName);
 
@@ -484,6 +493,7 @@
             } // addCard
 
             function removeCard(playerId) {
+                // Get card to remove
                 cardName = document.getElementById('playerTrades'+playerId).value;
                 cardIx = players[playerId].ingredients.findIndex(ingredients => ingredients.name === cardName)
 
@@ -499,8 +509,6 @@
                 } // if
                 showPlayer(playerId);
             } // addCard
-            
-
         </script>
     </body>
 </html>
